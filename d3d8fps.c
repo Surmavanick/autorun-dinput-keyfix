@@ -3,20 +3,28 @@
  * Copyright (c) 2026 Surmavanick
  * https://github.com/Surmavanick/autorun-dinput-keyfix
  *
- * D3D8Fps.asi - on-screen FPS counter for Direct3D 8 games, loaded by the
- * Ultimate ASI Loader. Hooks Direct3DCreate8 through the executable's import
- * table, wraps IDirect3D8::CreateDevice and patches the device vtable so that
- * every Present() first draws the current frame rate (7-segment digits, top
- * left) with DrawPrimitiveUP. No D3DX, no fonts, no dependencies beyond
- * kernel32/user32. Written for Autorun (wine-nx, Nintendo Switch) where
- * WineD3D has no HUD, but it works anywhere.
+ * D3D8Fps.asi - on-screen FPS counter and frame-rate limiter for Direct3D 8
+ * games, loaded by the Ultimate ASI Loader. Hooks Direct3DCreate8 through the
+ * executable's import table, wraps IDirect3D8::CreateDevice and patches the
+ * device vtable so that every Present() first draws the current frame rate
+ * (7-segment digits, top left) with DrawPrimitiveUP and then paces the frame
+ * to the configured limit. No D3DX, no fonts, no dependencies beyond
+ * kernel32/user32/winmm. Written for Autorun (wine-nx, Nintendo Switch) where
+ * WineD3D has neither a HUD nor a frame limiter, but it works anywhere.
+ *
+ * Configuration: D3D8Fps.ini next to the plugin
+ *   [D3D8Fps]
+ *   Limit=30        ; frames per second, 0 = no limit
+ *   ShowCounter=1   ; 0 hides the digits (the limit still applies)
+ *   NoVSync=1       ; with a limit, present immediately instead of waiting for vblank
  *
  * Log: D3D8Fps.log next to the plugin.
  *
- * Build: zig cc -target x86-windows-gnu -shared -O2 -o D3D8Fps.asi d3d8fps.c -luser32 -lkernel32
+ * Build: zig cc -target x86-windows-gnu -shared -O2 -o D3D8Fps.asi d3d8fps.c -luser32 -lkernel32 -lwinmm
  */
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include <mmsystem.h>
 
 /* IDirect3D8 vtable */
 #define VT_D3D_CreateDevice 15
@@ -26,10 +34,11 @@
 #define VT_DEV_BeginScene       34
 #define VT_DEV_EndScene         35
 #define VT_DEV_SetRenderState   50
+#define VT_DEV_BeginStateBlock  52
+#define VT_DEV_EndStateBlock    53
 #define VT_DEV_ApplyStateBlock  54
 #define VT_DEV_CaptureStateBlock 55
 #define VT_DEV_DeleteStateBlock 56
-#define VT_DEV_CreateStateBlock 57
 #define VT_DEV_SetTexture       61
 #define VT_DEV_SetTextureStageState 63
 #define VT_DEV_DrawPrimitiveUP  72
@@ -58,7 +67,6 @@
 #define D3DFILL_SOLID 3
 #define D3DFVF_XYZRHW_DIFFUSE 0x44
 #define D3DPT_TRIANGLELIST 4
-#define D3DSBT_ALL 1
 
 typedef void *(WINAPI *PFN_D3DCreate8)(UINT);
 typedef HRESULT (WINAPI *PFN_CreateDevice)(void *, UINT, DWORD, HWND, DWORD, void *, void **);
@@ -70,7 +78,7 @@ typedef HRESULT (WINAPI *PFN_SetTSS)(void *, DWORD, DWORD, DWORD);
 typedef HRESULT (WINAPI *PFN_SetTex)(void *, DWORD, void *);
 typedef HRESULT (WINAPI *PFN_SetShader)(void *, DWORD);
 typedef HRESULT (WINAPI *PFN_DrawUP)(void *, DWORD, UINT, const void *, UINT);
-typedef HRESULT (WINAPI *PFN_CreateSB)(void *, DWORD, DWORD *);
+typedef HRESULT (WINAPI *PFN_EndSB)(void *, DWORD *);
 typedef HRESULT (WINAPI *PFN_SB)(void *, DWORD);
 
 typedef struct { float x, y, z, rhw; DWORD color; } VERT;
@@ -82,6 +90,11 @@ static DWORD g_sb; static int g_sb_broken;
 static DWORD g_frames, g_last_tick, g_fps; static int g_first_present;
 static UINT g_bb_w, g_bb_h;
 static VERT g_verts[1024]; static UINT g_nverts;
+/* configuration */
+static int g_limit, g_show = 1, g_novsync = 1;
+static DWORD g_resyncs, g_stat_tick, g_stat_frames, g_stat_wait;
+/* limiter */
+static LARGE_INTEGER g_qpf; static LONGLONG g_next; static DWORD g_waited_ms, g_limit_frames;
 
 static void logf(const char *fmt, ...)
 {
@@ -101,15 +114,37 @@ static void patch_ptr(void **slot, void *val)
     VirtualProtect(slot, sizeof(void *), old, &old);
 }
 
+/* ---- frame limiter ---- */
+static void limit_wait(void)
+{
+    LARGE_INTEGER now; LONGLONG interval, remaining; DWORD t0 = 0;
+    if (g_limit <= 0 || !g_qpf.QuadPart) return;
+    interval = g_qpf.QuadPart / g_limit;
+    QueryPerformanceCounter(&now);
+    /* first frame, or the game fell more than a frame behind: re-sync instead of catching up */
+    if (!g_next || now.QuadPart > g_next + interval) { if (g_next) g_resyncs++; g_next = now.QuadPart; }
+    if (now.QuadPart < g_next) t0 = GetTickCount();
+    while (now.QuadPart < g_next)
+    {
+        remaining = g_next - now.QuadPart;
+        if (remaining > g_qpf.QuadPart / 400) Sleep(1);      /* more than 2.5 ms left */
+        else if (remaining > g_qpf.QuadPart / 4000) Sleep(0); /* more than 0.25 ms left */
+        QueryPerformanceCounter(&now);
+    }
+    if (t0) { DWORD w = GetTickCount() - t0; g_waited_ms += w; g_stat_wait += w; }
+    g_next += interval;
+    g_limit_frames++;
+}
+
 /* ---- drawing ---- */
 static void add_rect(float x0, float y0, float x1, float y1, DWORD c)
 {
-    VERT *v;
+    VERT *v; int i;
     if (g_nverts + 6 > 1024) return;
     v = &g_verts[g_nverts];
     v[0].x = x0; v[0].y = y0; v[1].x = x1; v[1].y = y0; v[2].x = x0; v[2].y = y1;
     v[3].x = x1; v[3].y = y0; v[4].x = x1; v[4].y = y1; v[5].x = x0; v[5].y = y1;
-    { int i; for (i = 0; i < 6; i++) { v[i].x -= 0.5f; v[i].y -= 0.5f; v[i].z = 0.0f; v[i].rhw = 1.0f; v[i].color = c; } }
+    for (i = 0; i < 6; i++) { v[i].x -= 0.5f; v[i].y -= 0.5f; v[i].z = 0.0f; v[i].rhw = 1.0f; v[i].color = c; }
     g_nverts += 6;
 }
 
@@ -134,6 +169,7 @@ static void build_overlay(DWORD fps)
     const float X = 10, Y = 10, W = 13, H = 22, T = 3, GAP = 5;
     int digits[4], n = 0, i; DWORD v = fps; float x;
     g_nverts = 0;
+    if (!g_show) return;
     if (v > 9999) v = 9999;
     do { digits[n++] = (int)(v % 10); v /= 10; } while (v && n < 4);
     add_rect(X - 5, Y - 5, X + n * (W + GAP) - GAP + 5, Y + H + 5, 0xC0000000);
@@ -141,17 +177,10 @@ static void build_overlay(DWORD fps)
     for (i = n - 1; i >= 0; i--) { add_digit(x, Y, W, H, T, digits[i], 0xFFFFFF00); x += W + GAP; }
 }
 
-static void draw_overlay(void *dev)
+/* the device states the overlay touches; also used to record the state block */
+static void set_overlay_states(void *dev)
 {
-    void **vt = g_dev_vt; HRESULT hr; int have_sb = 0;
-    if (!g_nverts) return;
-    if (!g_sb && !g_sb_broken)
-    {
-        hr = ((PFN_CreateSB)vt[VT_DEV_CreateStateBlock])(dev, D3DSBT_ALL, &g_sb);
-        if (FAILED(hr) || !g_sb) { g_sb = 0; g_sb_broken = 1; logf("CreateStateBlock failed %08lx; drawing without state save/restore", (unsigned long)hr); }
-    }
-    if (g_sb) { hr = ((PFN_SB)vt[VT_DEV_CaptureStateBlock])(dev, g_sb); have_sb = SUCCEEDED(hr); }
-    if (FAILED(((PFN_Void)vt[VT_DEV_BeginScene])(dev))) return;
+    void **vt = g_dev_vt;
     ((PFN_SetShader)vt[VT_DEV_SetPixelShader])(dev, 0);
     ((PFN_SetShader)vt[VT_DEV_SetVertexShader])(dev, D3DFVF_XYZRHW_DIFFUSE);
     ((PFN_SetTex)vt[VT_DEV_SetTexture])(dev, 0, NULL);
@@ -170,9 +199,39 @@ static void draw_overlay(void *dev)
     ((PFN_SetRS)vt[VT_DEV_SetRenderState])(dev, D3DRS_FILLMODE, D3DFILL_SOLID);
     ((PFN_SetRS)vt[VT_DEV_SetRenderState])(dev, D3DRS_CLIPPING, FALSE);
     ((PFN_SetRS)vt[VT_DEV_SetRenderState])(dev, D3DRS_COLORWRITEENABLE, 0x0F);
+}
+
+static void draw_overlay(void *dev)
+{
+    void **vt = g_dev_vt; HRESULT hr; int have_sb = 0;
+    if (!g_nverts) return;
+    if (!g_sb && !g_sb_broken)
+    {
+        /* record a state block that holds exactly the states set_overlay_states touches */
+        if (SUCCEEDED(((PFN_Void)vt[VT_DEV_BeginStateBlock])(dev)))
+        {
+            set_overlay_states(dev);
+            hr = ((PFN_EndSB)vt[VT_DEV_EndStateBlock])(dev, &g_sb);
+            if (FAILED(hr) || !g_sb) { g_sb = 0; g_sb_broken = 1; logf("EndStateBlock failed %08lx; drawing without state save/restore", (unsigned long)hr); }
+            else logf("state block %lu recorded", (unsigned long)g_sb);
+        }
+        else { g_sb_broken = 1; logf("BeginStateBlock failed; drawing without state save/restore"); }
+    }
+    if (g_sb) { hr = ((PFN_SB)vt[VT_DEV_CaptureStateBlock])(dev, g_sb); have_sb = SUCCEEDED(hr); }
+    if (FAILED(((PFN_Void)vt[VT_DEV_BeginScene])(dev))) return;
+    set_overlay_states(dev);
     ((PFN_DrawUP)vt[VT_DEV_DrawPrimitiveUP])(dev, D3DPT_TRIANGLELIST, g_nverts / 3, g_verts, sizeof(VERT));
     ((PFN_Void)vt[VT_DEV_EndScene])(dev);
     if (have_sb) ((PFN_SB)vt[VT_DEV_ApplyStateBlock])(dev, g_sb);
+}
+
+/* D3DPRESENT_PARAMETERS8: FullScreen_PresentationInterval is the 13th DWORD */
+static void force_immediate(void *pp, const char *where)
+{
+    DWORD *p = (DWORD *)pp;
+    if (!pp || !g_limit || !g_novsync) return;
+    logf("%s: presentation interval %08lx -> IMMEDIATE (limiter active)", where, (unsigned long)p[12]);
+    p[12] = 0x80000000; /* D3DPRESENT_INTERVAL_IMMEDIATE */
 }
 
 /* ---- device hooks ---- */
@@ -187,8 +246,20 @@ static HRESULT WINAPI hk_Present(void *dev, const RECT *src, const RECT *dst, HW
         g_frames = 0; g_last_tick = now;
         build_overlay(g_fps);
     }
-    if (!g_first_present) { g_first_present = 1; build_overlay(0); logf("first Present on device %08lx", (unsigned long)(ULONG_PTR)dev); }
+    if (!g_first_present)
+    {
+        g_first_present = 1; build_overlay(0);
+        logf("first Present on device %08lx (limit %d fps, counter %s)", (unsigned long)(ULONG_PTR)dev, g_limit, g_show ? "on" : "off");
+    }
     draw_overlay(dev);
+    limit_wait();
+    g_stat_frames++;
+    if (!g_stat_tick) g_stat_tick = now;
+    if (now - g_stat_tick >= 5000)
+    {
+        logf("5s: %lu frames (%lu fps shown), waited %lu ms, resyncs %lu", (unsigned long)g_stat_frames, (unsigned long)g_fps, (unsigned long)g_stat_wait, (unsigned long)g_resyncs);
+        g_stat_frames = 0; g_stat_wait = 0; g_resyncs = 0; g_stat_tick = now;
+    }
     return orig_present(dev, src, dst, wnd, dirty);
 }
 
@@ -196,23 +267,28 @@ static HRESULT WINAPI hk_Reset(void *dev, void *pp)
 {
     HRESULT hr;
     if (g_sb) { ((PFN_SB)g_dev_vt[VT_DEV_DeleteStateBlock])(dev, g_sb); g_sb = 0; }
+    force_immediate(pp, "Reset");
     hr = orig_reset(dev, pp);
     if (pp) { g_bb_w = ((UINT *)pp)[0]; g_bb_h = ((UINT *)pp)[1]; }
+    g_next = 0;
     logf("Reset -> %08lx (backbuffer %ux%u)", (unsigned long)hr, g_bb_w, g_bb_h);
     return hr;
 }
 
 static HRESULT WINAPI hk_CreateDevice(void *d3d, UINT adapter, DWORD type, HWND focus, DWORD flags, void *pp, void **out)
 {
-    HRESULT hr = orig_cd(d3d, adapter, type, focus, flags, pp, out);
+    HRESULT hr;
+    force_immediate(pp, "CreateDevice");
+    hr = orig_cd(d3d, adapter, type, focus, flags, pp, out);
     logf("CreateDevice(adapter %u, type %lu, flags %lx) -> %08lx dev=%08lx", adapter, (unsigned long)type, (unsigned long)flags, (unsigned long)hr, (unsigned long)(ULONG_PTR)(out && SUCCEEDED(hr) ? *out : NULL));
     if (SUCCEEDED(hr) && out && *out)
     {
         void **vt = *(void ***)*out;
         if (pp) { g_bb_w = ((UINT *)pp)[0]; g_bb_h = ((UINT *)pp)[1]; logf("backbuffer %ux%u", g_bb_w, g_bb_h); }
+        g_sb = 0; g_sb_broken = 0; g_first_present = 0; g_next = 0;
         if (g_dev_vt != vt)
         {
-            g_dev_vt = vt; g_sb = 0; g_sb_broken = 0; g_first_present = 0;
+            g_dev_vt = vt;
             orig_present = (PFN_Present)vt[VT_DEV_Present]; orig_reset = (PFN_Reset)vt[VT_DEV_Reset];
             patch_ptr(&vt[VT_DEV_Present], (void *)hk_Present);
             patch_ptr(&vt[VT_DEV_Reset], (void *)hk_Reset);
@@ -265,28 +341,37 @@ static void **find_iat_entry(HMODULE mod, const char *dll, const char *func)
     return NULL;
 }
 
-static void open_log(void)
+static void plugin_path(char *out, const char *name)
 {
-    char path[MAX_PATH]; DWORD n = GetModuleFileNameA(g_self, path, MAX_PATH);
-    while (n && path[n - 1] != '\\' && path[n - 1] != '/') n--;
-    lstrcpyA(path + n, "D3D8Fps.log");
-    g_log = CreateFileA(path, GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    DWORD n = GetModuleFileNameA(g_self, out, MAX_PATH);
+    while (n && out[n - 1] != '\\' && out[n - 1] != '/') n--;
+    lstrcpyA(out + n, name);
 }
 
 BOOL WINAPI DllMain(HINSTANCE inst, DWORD reason, LPVOID reserved)
 {
     if (reason == DLL_PROCESS_ATTACH)
     {
-        void **slot; HMODULE exe = GetModuleHandleA(NULL);
-        g_self = inst; DisableThreadLibraryCalls(inst); open_log();
-        logf("D3D8Fps loaded; exe=%08lx", (unsigned long)(ULONG_PTR)exe);
+        void **slot; HMODULE exe = GetModuleHandleA(NULL); char path[MAX_PATH];
+        g_self = inst; DisableThreadLibraryCalls(inst);
+        plugin_path(path, "D3D8Fps.log");
+        g_log = CreateFileA(path, GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+        plugin_path(path, "D3D8Fps.ini");
+        g_limit = GetPrivateProfileIntA("D3D8Fps", "Limit", 0, path);
+        g_show = GetPrivateProfileIntA("D3D8Fps", "ShowCounter", 1, path);
+        g_novsync = GetPrivateProfileIntA("D3D8Fps", "NoVSync", 1, path);
+        if (g_limit < 0 || g_limit > 1000) g_limit = 0;
+        QueryPerformanceFrequency(&g_qpf);
+        if (g_limit) timeBeginPeriod(1);
+        logf("D3D8Fps loaded; exe=%08lx ini=%s limit=%d counter=%d novsync=%d qpf=%lu", (unsigned long)(ULONG_PTR)exe, path, g_limit, g_show, g_novsync, (unsigned long)g_qpf.QuadPart);
         slot = find_iat_entry(exe, "d3d8.dll", "Direct3DCreate8");
         if (slot) { orig_create8 = (PFN_D3DCreate8)*slot; patch_ptr(slot, (void *)hk_Direct3DCreate8); logf("IAT d3d8.dll!Direct3DCreate8 hooked (was %08lx)", (unsigned long)(ULONG_PTR)orig_create8); }
         else logf("IAT entry for d3d8.dll!Direct3DCreate8 NOT found - plugin inactive");
     }
     else if (reason == DLL_PROCESS_DETACH)
     {
-        if (g_log != INVALID_HANDLE_VALUE) { logf("unloading (last fps %lu)", (unsigned long)g_fps); CloseHandle(g_log); }
+        if (g_limit) timeEndPeriod(1);
+        if (g_log != INVALID_HANDLE_VALUE) { logf("unloading (last fps %lu, limited frames %lu, waited %lu ms)", (unsigned long)g_fps, (unsigned long)g_limit_frames, (unsigned long)g_waited_ms); CloseHandle(g_log); }
     }
     return TRUE;
 }

@@ -72,6 +72,6 @@ MIT, see `LICENSE`.
 
 ### D3D8Fps.asi (on-screen FPS counter for Direct3D 8 games)
 
-`d3d8fps.c` → `bin/D3D8Fps.asi`, loaded by the Ultimate ASI Loader from `scripts/`. It hooks `Direct3DCreate8` through the executable's import table, patches `IDirect3DDevice8::Present`/`Reset`, and draws the frame rate as 7-segment digits in the top-left corner with `DrawPrimitiveUP` (state saved/restored through a state block, no D3DX, no fonts). Useful on Autorun where WineD3D has no HUD. Log: `D3D8Fps.log`. Tested with NFS Hot Pursuit 2.
+`d3d8fps.c` → `bin/D3D8Fps.asi`, loaded by the Ultimate ASI Loader from `scripts/`. It hooks `Direct3DCreate8` through the executable's import table, patches `IDirect3DDevice8::Present`/`Reset`, draws the frame rate as 7-segment digits in the top-left corner with `DrawPrimitiveUP` (only the touched states are saved/restored through a recorded state block, no D3DX, no fonts) and, optionally, **caps the frame rate**: `D3D8Fps.ini` next to it takes `Limit=30` (0 = off), `ShowCounter=1` and `NoVSync=1` (with a limit, the presentation interval is forced to IMMEDIATE so the pacing is exact instead of colliding with vblank; measured 150 frames per 5 s at `Limit=30`). Useful on Autorun where WineD3D has neither a HUD nor a limiter (Autorun's own frame limit only covers Vulkan/DXVK). Log: `D3D8Fps.log` with 5-second statistics. Tested with NFS Hot Pursuit 2.
 
 Build everything: `ZIG=/path/to/zig ./build.sh`
