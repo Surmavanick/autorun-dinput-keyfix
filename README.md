@@ -63,3 +63,15 @@ ZIG=/path/to/zig ./build.sh
 ## License
 
 MIT, see `LICENSE`.
+
+## Also in this repo
+
+### dinput8.dll (DirectInput 8 mouse + keyboard bridge)
+
+`dibridge8.c` builds a drop-in `dinput8.dll` proxy for DirectInput 8 games (`bin/dinput8.dll`, exports via `dinput8.def`). It forwards `DirectInput8Create` to the system DLL and wraps the keyboard *and* mouse devices: the keyboard is fed like the ASI above, the mouse gets relative X/Y from `GetCursorPos` movement and buttons 0..2 from `VK_LBUTTON/VK_RBUTTON/VK_MBUTTON`, both as immediate state and as buffered events. Needs `"dinput8"="native,builtin"` under `[Software\\Wine\\DllOverrides]` in `switch/wine/registry/user.reg`. Log: `dinput8-bridge.log` next to the DLL. Verified on desktop Wine with Stronghold Crusader 2 (Havok Vision engine, buffered `GetDeviceData` for both devices); on the Switch the game itself did not get to a frame for other reasons (missing `glu32.dll`, `d3dx9_43.dll`, `D3DCompiler_43.dll` in the runtime), so treat the Switch side as untested.
+
+### D3D8Fps.asi (on-screen FPS counter for Direct3D 8 games)
+
+`d3d8fps.c` → `bin/D3D8Fps.asi`, loaded by the Ultimate ASI Loader from `scripts/`. It hooks `Direct3DCreate8` through the executable's import table, patches `IDirect3DDevice8::Present`/`Reset`, and draws the frame rate as 7-segment digits in the top-left corner with `DrawPrimitiveUP` (state saved/restored through a state block, no D3DX, no fonts). Useful on Autorun where WineD3D has no HUD. Log: `D3D8Fps.log`. Tested with NFS Hot Pursuit 2.
+
+Build everything: `ZIG=/path/to/zig ./build.sh`
