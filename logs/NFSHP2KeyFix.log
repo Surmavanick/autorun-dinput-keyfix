@@ -1,0 +1,37 @@
+[934295216] NFSHP2KeyFix loaded; exe=00400000 pid=1 tid=4 dinput.dll=fc300000
+[934295227] IAT DINPUT.dll!DirectInputCreateA hooked (was fc3222d0)
+[934297486] DirectInputCreateA(ver=0700) -> 00000000 obj=012f7b58
+[934297492] IDirectInput vtable fbd6a190: CreateDevice patched
+[934297498] IDirectInput7A vtable fbd6a190: CreateDeviceEx patched
+[934297500] vk->dik table: 122 entries (UP=c8 DOWN=d0 LEFT=cb RIGHT=cd SPACE=39 C=2e)
+[934297502] WH_GETMESSAGE hook on thread 4: FAILED (err 1)
+[934297513] CreateDevice(SysKeyboard) -> 00000000 dev=013333c4
+[934297543] keyboard device 013333c4: vtable fbd6a0e4 patched (Acquire/GetDeviceState/GetDeviceData/SetCooperativeLevel)
+[934297546] SetCooperativeLevel(kbd 013333c4, hwnd 00020040, flags 6) -> 00000000
+[934297547] DirectInputCreateA(ver=0700) -> 00000000 obj=012f7b98
+[934297548] IDirectInput7A vtable fbd6a190: CreateDeviceEx patched
+[934297551] CreateDevice(SysMouse) -> 00000000 dev=01338634
+[934297554] DirectInputCreateA(ver=0700) -> 00000000 obj=012f7bd8
+[934297555] IDirectInput7A vtable fbd6a190: CreateDeviceEx patched
+[934297558] CreateDevice(SysMouse) -> 00000000 dev=01339084
+[934297566] CreateDevice(SysKeyboard) -> 00000000 dev=01339c7c
+[934297568] SetCooperativeLevel(kbd 01339c7c, hwnd 00020040, flags 6) -> 00000000
+[934305497] Acquire(kbd 013333c4) -> 00000000
+[934305501] GetDeviceState(kbd 013333c4, cb=256) first call -> 00000000
+[934305504] stats: state=1 data=0 fail=0(last 00000000) msgev=0 | frames with keys from msg=0 async=0 kbstate=0 original=0 | now=[]
+[934308945] stats: state=359 data=0 fail=0(last 00000000) msgev=0 | frames with keys from msg=0 async=0 kbstate=0 original=0 | now=[]
+[934312131] stats: state=929 data=0 fail=0(last 00000000) msgev=0 | frames with keys from msg=0 async=0 kbstate=0 original=0 | now=[]
+[934315134] stats: state=1221 data=0 fail=0(last 00000000) msgev=0 | frames with keys from msg=0 async=0 kbstate=0 original=0 | now=[]
+[934318141] stats: state=1699 data=0 fail=0(last 00000000) msgev=0 | frames with keys from msg=0 async=130 kbstate=130 original=0 | now=[]
+[934321146] stats: state=2153 data=0 fail=0(last 00000000) msgev=0 | frames with keys from msg=0 async=364 kbstate=366 original=0 | now=[]
+[934324154] stats: state=2645 data=0 fail=0(last 00000000) msgev=0 | frames with keys from msg=0 async=454 kbstate=456 original=0 | now=[]
+[934327155] stats: state=3145 data=0 fail=0(last 00000000) msgev=0 | frames with keys from msg=0 async=540 kbstate=542 original=0 | now=[]
+[934330165] stats: state=3657 data=0 fail=0(last 00000000) msgev=0 | frames with keys from msg=0 async=614 kbstate=616 original=0 | now=[]
+[934333172] stats: state=4087 data=0 fail=0(last 00000000) msgev=0 | frames with keys from msg=0 async=690 kbstate=694 original=0 | now=[]
+[934336173] stats: state=4663 data=0 fail=0(last 00000000) msgev=0 | frames with keys from msg=0 async=768 kbstate=772 original=0 | now=[]
+[934339175] stats: state=5093 data=0 fail=0(last 00000000) msgev=0 | frames with keys from msg=0 async=828 kbstate=832 original=0 | now=[]
+[934342180] stats: state=5593 data=0 fail=0(last 00000000) msgev=0 | frames with keys from msg=0 async=852 kbstate=856 original=0 | now=[]
+[934345189] stats: state=5947 data=0 fail=0(last 00000000) msgev=0 | frames with keys from msg=0 async=876 kbstate=882 original=0 | now=[]
+[934348201] stats: state=6227 data=0 fail=0(last 00000000) msgev=0 | frames with keys from msg=0 async=961 kbstate=967 original=0 | now=[cd ]
+[934351216] stats: state=6507 data=0 fail=0(last 00000000) msgev=0 | frames with keys from msg=0 async=1047 kbstate=1055 original=0 | now=[d0 ]
+[934354216] stats: state=6760 data=0 fail=0(last 00000000) msgev=0 | frames with keys from msg=0 async=1084 kbstate=1092 original=0 | now=[1c ]

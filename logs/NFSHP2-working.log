@@ -1,0 +1,961 @@
+[LOG] this run is kept in sdmc:/switch/wine/logs/NFSHP2.log
+wine-nx-runtime: generic Wine ntdll PE loader path
+[BUILD] nx-wow64-dynarec-248
+[SDCACHE] sdmc reads cached: 128 KB chunks, 8 per file, 32 to 192 MB in all
+[INIT] verbose traces off (verbose.txt)
+[INIT] profiler off (profile.txt)
+[INIT] windows shown by the OpenGL compositor
+[TARGET] sdmc:/switch/wine/drive_c/NFS Hot Pursuit 2/NFSHP2.exe
+[INIT] Wine paths/unix bridge ready
+[VA] native stack region 0x200000-0x40000000; window for native mappings 0x18140000-0x40000000
+[VA] early guest reservations: 1344 MB, largest 342 MB; protected from native mappings
+[INIT] virtual memory ready
+[INIT] Wine NLS/environment ready
+[VAFAIL] tid=0000 base=0x7ffe0000 size=0x1000 type=0x3000 prot=0x4 zero_bits=0 status=0xc0000018 count=1
+[INIT] processors=3 memory=2048 MB used=166 MB
+[INIT] shared data clock initialized
+[INIT] server process initialized
+[TLS] 91 placeholder threads (the next refused: rc=0x10801), 13 kept to hold a thread-local page each; of 13 such pages below 4 GB, 3 were inside the program's reserved memory and were taken out of it
+[IMAGE] base=0x400000 size=0x460000 preferred=0x400000 entry_rva=0x1c76c1 machine=0x14c
+[IMAGE] subsystem=2 dll_char=0x0 imports=0x28dfc4/0xf0 sections=6 relocs=0x0/0x0 (cannot be moved: it needs the 32-bit forwarder)
+[NXINPUT] sdmc:/switch/wine/drive_c/NFS Hot Pursuit 2/NFSHP2.keys.txt: 14 controls remapped
+[ARGS] args.txt is for another program; CommandLine='C:\NFS Hot Pursuit 2\NFSHP2.exe'
+[STDIO] stdin=0x110 stdout=0x114 stderr=0x118 (sdmc:/switch/wine/logs/std*.txt)
+[PEB] image=C:\NFS Hot Pursuit 2\NFSHP2.exe nt=\??\C:\NFS Hot Pursuit 2\NFSHP2.exe
+[WOW64] PEB32 status=00000000
+[WOW64] api set schema=0x230000
+[LDR] alloc_module basename='NFSHP2.exe' len=10 base=0x400000
+[WOW64] native loader bootstrap status=00000000
+[WOW64] loading native module 0
+[TR] open \??\C:\NFS Hot Pursuit 2\ntdll.dll -> c0000034
+[TR] qsection->00000000 machine=0xaa64 cur=0xaa64 contains_code=1
+[TR] map_view \??\C:\windows\system32\ntdll.dll
+[FS] /switch/wine/lib/wine/aarch64-windows/ntdll.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/ntdll.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[TR] map_view -> 00000000 base=0xffcb0000
+[TR] build_module \??\C:\windows\system32\ntdll.dll base=0xffcb0000
+[TR] relocs base=0xffcb0000 size=0x350000
+[TR] relocs done; fixup imports next
+[LDR] alloc_module basename='ntdll.dll' len=9 base=0xffcb0000
+[LDR] captured PE ntdll base=0xffcb0000
+[TR] fixup_imports enter ntdll.dll
+[WOW64] native module 0 status=00000000
+[WOW64] loading native module 1
+[TR] open \??\C:\NFS Hot Pursuit 2\wow64.dll -> c0000034
+[TR] qsection->00000000 machine=0xaa64 cur=0xaa64 contains_code=1
+[TR] map_view \??\C:\windows\system32\wow64.dll
+[FS] /switch/wine/lib/wine/aarch64-windows/wow64.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/wow64.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[TR] map_view -> 00000000 base=0xffb90000
+[TR] build_module \??\C:\windows\system32\wow64.dll base=0xffb90000
+[TR] relocs base=0xffb90000 size=0x120000
+[TR] relocs done; fixup imports next
+[LDR] alloc_module basename='wow64.dll' len=9 base=0xffb90000
+[TR] fixup_imports enter wow64.dll
+[TR] fixup_imports 1 deps
+[TR] import ntdll.dll -> ntdll.dll build=00000000
+[TR] load_dll ntdll.dll -> 00000000
+[WOW64] native module 1 status=00000000
+[WOW64] loading native module 2
+[TR] open \??\C:\NFS Hot Pursuit 2\wow64win.dll -> c0000034
+[TR] qsection->00000000 machine=0xaa64 cur=0xaa64 contains_code=1
+[TR] map_view \??\C:\windows\system32\wow64win.dll
+[FS] /switch/wine/lib/wine/aarch64-windows/wow64win.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/wow64win.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[TR] map_view -> 00000000 base=0xffa60000
+[TR] build_module \??\C:\windows\system32\wow64win.dll base=0xffa60000
+[TR] relocs base=0xffa60000 size=0x130000
+[TR] relocs done; fixup imports next
+[LDR] alloc_module basename='wow64win.dll' len=12 base=0xffa60000
+[TR] fixup_imports enter wow64win.dll
+[TR] fixup_imports 3 deps
+[TR] import wow64.dll -> wow64.dll build=00000000
+[TR] load_dll wow64.dll -> 00000000
+[TR] import win32u.dll -> win32u.dll build=00000000
+[TR] open \??\C:\NFS Hot Pursuit 2\win32u.dll -> c0000034
+[TR] qsection->00000000 machine=0xaa64 cur=0xaa64 contains_code=1
+[TR] map_view \??\C:\windows\system32\win32u.dll
+[FS] /switch/wine/lib/wine/aarch64-windows/win32u.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/win32u.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[TR] map_view -> 00000000 base=0xff970000
+[TR] build_module \??\C:\windows\system32\win32u.dll base=0xff970000
+[TR] relocs base=0xff970000 size=0xf0000
+[TR] relocs done; fixup imports next
+[LDR] alloc_module basename='win32u.dll' len=10 base=0xff970000
+[TR] fixup_imports enter win32u.dll
+[TR] fixup_imports 1 deps
+[TR] import ntdll.dll -> ntdll.dll build=00000000
+[TR] load_dll ntdll.dll -> 00000000
+[TR] load_dll win32u.dll -> 00000000
+[TR] import ntdll.dll -> ntdll.dll build=00000000
+[TR] load_dll ntdll.dll -> 00000000
+[WOW64] native module 2 status=00000000
+[WOW64] loading native module 3
+[TR] open \??\C:\NFS Hot Pursuit 2\winebox64.dll -> c0000034
+[TR] qsection->00000000 machine=0xaa64 cur=0xaa64 contains_code=1
+[TR] map_view \??\C:\windows\system32\winebox64.dll
+[FS] /switch/wine/lib/wine/aarch64-windows/winebox64.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/winebox64.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[TR] map_view -> 00000000 base=0xff8b0000
+[TR] build_module \??\C:\windows\system32\winebox64.dll base=0xff8b0000
+[TR] relocs base=0xff8b0000 size=0xc0000
+[TR] relocs done; fixup imports next
+[LDR] alloc_module basename='winebox64.dll' len=13 base=0xff8b0000
+[TR] fixup_imports enter winebox64.dll
+[TR] fixup_imports 2 deps
+[TR] import wow64.dll -> wow64.dll build=00000000
+[TR] load_dll wow64.dll -> 00000000
+[TR] import ntdll.dll -> ntdll.dll build=00000000
+[TR] load_dll ntdll.dll -> 00000000
+[WOW64] native module 3 status=00000000
+[LDR] patching PE ntdll dispatchers; ntdll base=0xffcb0000
+[LDR] PE ntdll dispatchers patched syscall=0xf29d0288 unix=0xf29d0378 handle=0xf4be1250 teb=0x6afe0000
+[LDR] swapping ProcessHeap shim=0x1000 -> real=0x250000
+[LDR] version_init() done
+[NLS] Init: trying unix path=/switch/wine/share/wine/nls/locale.nls system_dir_prefix='\??\C:\windows\system32\'
+[NLS] open_nls_data_file -> status=0x00000000 file_handle=0x15c
+[NLS] NtCreateSection -> status=0x00000000 section=0x160
+[NLS] map_section -> status=0x00000000 *ptr=0x270000 mapsize=0xc3000
+[NLS] NtInitializeNlsFiles return status=0x00000000 lcid=0x00000409
+[LDR] locale_init() done
+[LDR] PE ntdll hash_table initialized (32 buckets at 0xffd60be0, 6 modules inserted)
+[ATTACH] enter ntdll.dll flags=0x80000004 entry=0xffd2ff90
+[ATTACH] calling DllMain ntdll.dll entry=0xffd2ff90
+[ATTACH] DllMain ntdll.dll returned status=0x00000000
+[ATTACH] enter wow64.dll flags=0x80000004 entry=0xffbb1468
+[ATTACH] calling DllMain wow64.dll entry=0xffbb1468
+[ATTACH] DllMain wow64.dll returned status=0x00000000
+[ATTACH] enter wow64win.dll flags=0x80000004 entry=0xffa7de14
+[ATTACH] enter win32u.dll flags=0x80000004 entry=0xff9a0778
+[ATTACH] calling DllMain win32u.dll entry=0xff9a0778
+[ATTACH] DllMain win32u.dll returned status=0x00000000
+[ATTACH] calling DllMain wow64win.dll entry=0xffa7de14
+[ATTACH] DllMain wow64win.dll returned status=0x00000000
+[ATTACH] enter winebox64.dll flags=0x80000004 entry=0xff8c0d94
+[ATTACH] calling DllMain winebox64.dll entry=0xff8c0d94
+[ATTACH] DllMain winebox64.dll returned status=0x00000000
+[WOW64] selected winebox64.dll through native bootstrap
+[WOW64] native DLLs status=00000000
+[FS] /switch/wine/lib/wine/i386-windows/ntdll.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/ntdll.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[WOW64] guest ntdll=0xff670000 init block status=00000000
+[WOW64] loader ready: TEB32=0x6afe2000 stack=0095fff0 entry=005c76c1
+[WOW64] main thread priority 59 -> 59 rc=0
+[WOW64] entering Wine's x86 LdrInitializeThunk via ARM64 wow64.dll
+[NXLDR] enter name=\??\C:\windows\system32\winebox64.dll search=00000000FFBC0428 flags_ptr=0000000000000000 module_ptr=0000000014CA2E78 teb=000000006AFE0000
+[NXLDR] load name=\??\C:\windows\system32\winebox64.dll status=00000000 wm=00000000704447D8
+[NXLDR] attach name=\??\C:\windows\system32\winebox64.dll status=00000000 base=00000000FF8B0000
+[NXLDR] return name=\??\C:\windows\system32\winebox64.dll status=00000000 module=00000000FF8B0000
+[NXLDR] enter name=\??\C:\windows\system32\wow64win.dll search=00000000FFBC0428 flags_ptr=0000000000000000 module_ptr=0000000014CA2E78 teb=000000006AFE0000
+[NXLDR] load name=\??\C:\windows\system32\wow64win.dll status=00000000 wm=0000000071E00078
+[NXLDR] attach name=\??\C:\windows\system32\wow64win.dll status=00000000 base=00000000FFA60000
+[NXLDR] return name=\??\C:\windows\system32\wow64win.dll status=00000000 module=00000000FFA60000
+[DYNAREC] code arena 1: 16 MB at 0x28aeb000 (16 MB in all, window had 82 MB in one piece)
+[FS] /switch/wine/lib/wine/i386-windows/kernel32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/kernel32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/kernelbase.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/kernelbase.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[NLS] Init: trying unix path=/switch/wine/share/wine/nls/locale.nls system_dir_prefix='\??\C:\windows\system32\'
+[NLS] open_nls_data_file -> status=0x00000000 file_handle=0x1ac
+[NLS] NtCreateSection -> status=0x00000000 section=0x1b0
+[NLS] map_section -> status=0x00000000 *ptr=0x960000 mapsize=0xc3000
+[NLS] NtInitializeNlsFiles return status=0x00000000 lcid=0x00000409
+[FS] /switch/wine/lib/wine/i386-windows/shell32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/shell32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/shlwapi.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/shlwapi.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/shcore.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/shcore.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/advapi32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/advapi32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/sechost.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/sechost.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/rpcrt4.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/rpcrt4.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/cryptbase.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/cryptbase.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/ucrtbase.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/ucrtbase.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/msvcrt.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/msvcrt.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/user32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/user32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/gdi32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/gdi32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/win32u.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/win32u.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/imm32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/imm32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/d3d8.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/d3d8.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/wined3d.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/wined3d.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/opengl32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/opengl32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/winmm.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/winmm.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/ole32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/ole32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/combase.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/combase.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/coml2.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/coml2.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/msacm32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/msacm32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/d3d9.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/d3d9.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/dbghelp.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/dbghelp.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/i386-windows/ws2_32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[FS] /switch/wine/lib/wine/ws2_32.dll could not be opened: status c000000f (access 80100000, sharing 5, disposition 1, options 00000060, errno 2)
+[NXLDR] enter name=imm32.dll search=00000001 flags_ptr=0095FA00 module_ptr=0095FA04 teb=6AFE2000
+[NXLDR] path name=imm32.dll status=00000000 path=003A75F0
+[NXLDR] load name=imm32.dll status=00000000 wm=003A3480
+[NXLDR] attach name=imm32.dll status=00000000 base=FE170000
+[NXLDR] return name=imm32.dll status=00000000 module=FE170000
+[NXLDR] enter name=uxtheme.dll search=00000001 flags_ptr=0095EF28 module_ptr=0095EF2C teb=6AFE2000
+[NXLDR] path name=uxtheme.dll status=00000000 path=003A75F0
+[NXLDR] load name=uxtheme.dll status=00000000 wm=003A3F18
+[NXLDR] attach name=uxtheme.dll status=00000000 base=FBDB0000
+[NXLDR] return name=uxtheme.dll status=00000000 module=FBDB0000
+[NXLDR] enter name=msacm32.dll search=00000001 flags_ptr=0095DBB4 module_ptr=0095DBB8 teb=6AFE2000
+[NXLDR] path name=msacm32.dll status=00000000 path=003A75F0
+[NXLDR] load name=msacm32.dll status=00000000 wm=003A3A98
+[NXLDR] attach name=msacm32.dll status=00000000 base=FC5B0000
+[NXLDR] return name=msacm32.dll status=00000000 module=FC5B0000
+[NXLDR] enter name=msacm32.dll search=00000001 flags_ptr=0095DB80 module_ptr=0095DB84 teb=6AFE2000
+[NXLDR] path name=msacm32.dll status=00000000 path=003A75F0
+[NXLDR] load name=msacm32.dll status=00000000 wm=003A3A98
+[NXLDR] attach name=msacm32.dll status=00000000 base=FC5B0000
+[NXLDR] return name=msacm32.dll status=00000000 module=FC5B0000
+[NXLDR] enter name=api-ms-win-core-synch-l1-2-0 search=00000801 flags_ptr=0095F94C module_ptr=0095F950 teb=6AFE2000
+[NXLDR] path name=api-ms-win-core-synch-l1-2-0 status=00000000 path=003A5840
+[NXLDR] load name=api-ms-win-core-synch-l1-2-0 status=00000000 wm=003A1038
+[NXLDR] attach name=api-ms-win-core-synch-l1-2-0 status=00000000 base=FEF20000
+[NXLDR] return name=api-ms-win-core-synch-l1-2-0 status=00000000 module=FEF20000
+[NXLDR] enter name=api-ms-win-core-fibers-l1-1-1 search=00000801 flags_ptr=0095F95C module_ptr=0095F960 teb=6AFE2000
+[NXLDR] path name=api-ms-win-core-fibers-l1-1-1 status=00000000 path=003A5840
+[NXLDR] load name=api-ms-win-core-fibers-l1-1-1 status=00000000 wm=003A1038
+[NXLDR] attach name=api-ms-win-core-fibers-l1-1-1 status=00000000 base=FEF20000
+[NXLDR] return name=api-ms-win-core-fibers-l1-1-1 status=00000000 module=FEF20000
+[NXLDR] enter name=api-ms-win-core-synch-l1-2-0 search=00000801 flags_ptr=0095F92C module_ptr=0095F930 teb=6AFE2000
+[NXLDR] path name=api-ms-win-core-synch-l1-2-0 status=00000000 path=003A5840
+[NXLDR] load name=api-ms-win-core-synch-l1-2-0 status=00000000 wm=003A1038
+[NXLDR] attach name=api-ms-win-core-synch-l1-2-0 status=00000000 base=FEF20000
+[NXLDR] return name=api-ms-win-core-synch-l1-2-0 status=00000000 module=FEF20000
+[NXLDR] enter name=api-ms-win-core-fibers-l1-1-1 search=00000801 flags_ptr=0095F93C module_ptr=0095F940 teb=6AFE2000
+[NXLDR] path name=api-ms-win-core-fibers-l1-1-1 status=00000000 path=003A5840
+[NXLDR] load name=api-ms-win-core-fibers-l1-1-1 status=00000000 wm=003A1038
+[NXLDR] attach name=api-ms-win-core-fibers-l1-1-1 status=00000000 base=FEF20000
+[NXLDR] return name=api-ms-win-core-fibers-l1-1-1 status=00000000 module=FEF20000
+[NXLDR] enter name=api-ms-win-core-localization-l1-2-1 search=00000801 flags_ptr=0095EEDC module_ptr=0095EEE0 teb=6AFE2000
+[NXLDR] path name=api-ms-win-core-localization-l1-2-1 status=00000000 path=003A5840
+[NXLDR] load name=api-ms-win-core-localization-l1-2-1 status=00000000 wm=003A1038
+[NXLDR] attach name=api-ms-win-core-localization-l1-2-1 status=00000000 base=FEF20000
+[NXLDR] return name=api-ms-win-core-localization-l1-2-1 status=00000000 module=FEF20000
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c72160 far=0x65d0c8 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x33000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0x1 x2=0xfc381550 x3=0xfc318e50 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c720c8 far=0x65d0cc sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x33000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0x1 x2=0xfc381540 x3=0xfc318f80 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c71f98 far=0x65d0d8 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x33000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0x1 x2=0xfc381520 x3=0xfc318ec0 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c71f00 far=0x65d0ec sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x33000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0x1 x2=0xfc381510 x3=0xfc318e80 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c71e68 far=0x65d128 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x33000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0x1 x2=0xfc381500 x3=0xfc318f00 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c721ac far=0x65d1e8 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x33000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0x1 x2=0xfc381558 x3=0xfc318dd0 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c72244 far=0x65d218 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x33000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0x1 x2=0xfc381568 x3=0xfc318f40 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c72030 far=0x65d224 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x33000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0x1 x2=0xfc381530 x3=0xfc318e10 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c722dc far=0x65d2ac sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x33000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0x1 x2=0xfc381578 x3=0xfc318fa0 x18=0x0
+[NXLDR] enter name=kernel32 search=00000001 flags_ptr=0095F888 module_ptr=0095F88C teb=6AFE2000
+[NXLDR] path name=kernel32 status=00000000 path=003AD2D0
+[NXLDR] load name=kernel32 status=00000000 wm=003A0F78
+[NXLDR] attach name=kernel32 status=00000000 base=FF350000
+[NXLDR] return name=kernel32 status=00000000 module=FF350000
+[NXLDR] enter name=C:\windows\system32\DINPUT.dll search=00000001 flags_ptr=0095FC98 module_ptr=0095FC9C teb=6AFE2000
+[NXLDR] path name=C:\windows\system32\DINPUT.dll status=00000000 path=003AC128
+[NXLDR] load name=C:\windows\system32\DINPUT.dll status=00000000 wm=003A3F18
+[NXLDR] attach name=C:\windows\system32\DINPUT.dll status=00000000 base=FBD50000
+[NXLDR] return name=C:\windows\system32\DINPUT.dll status=00000000 module=FBD50000
+[NXLDR] enter name=.\modloader\modupdater.asi search=00000001 flags_ptr=0095F9D0 module_ptr=0095F9D4 teb=6AFE2000
+[NXLDR] path name=.\modloader\modupdater.asi status=00000000 path=003AD2C0
+[NXLDR] load name=.\modloader\modupdater.asi status=c0000135 wm=00000000
+[NXLDR] return name=.\modloader\modupdater.asi status=c0000135 module=00000000
+[NXLDR] enter name=.\modloader\modloader.asi search=00000001 flags_ptr=0095F9D0 module_ptr=0095F9D4 teb=6AFE2000
+[NXLDR] path name=.\modloader\modloader.asi status=00000000 path=003AD2C0
+[NXLDR] load name=.\modloader\modloader.asi status=c0000135 wm=00000000
+[NXLDR] return name=.\modloader\modloader.asi status=c0000135 module=00000000
+[NXLDR] enter name=kernel32 search=00000801 flags_ptr=0095F7CC module_ptr=0095F7D0 teb=6AFE2000
+[NXLDR] path name=kernel32 status=00000000 path=003A5B40
+[NXLDR] load name=kernel32 status=00000000 wm=003A0F78
+[NXLDR] attach name=kernel32 status=00000000 base=FF350000
+[NXLDR] return name=kernel32 status=00000000 module=FF350000
+[NXLDR] enter name=C:\NFS Hot Pursuit 2\scripts\HP2WSFix.asi search=00000001 flags_ptr=0095F8B4 module_ptr=0095F8B8 teb=6AFE2000
+[NXLDR] path name=C:\NFS Hot Pursuit 2\scripts\HP2WSFix.asi status=00000000 path=003AF8E8
+[NXLDR] load name=C:\NFS Hot Pursuit 2\scripts\HP2WSFix.asi status=00000000 wm=003A42D8
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ced3b0 far=0x46f3a5 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x401000/0x25b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95126a x2=0x28ced39c x3=0xe9 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ced4f4 far=0x46f3a6 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x46f000/0x1ed000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb9512ab x2=0x28ced4e4 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce5358 far=0x40c501 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x401000/0x6e000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb957ec6 x2=0x28ce5344 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce5608 far=0x53eb84 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x46f000/0x1ed000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb957f67 x2=0x28ce55f4 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce58b8 far=0x53ed7c sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53e000/0x11e000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958008 x2=0x28ce58a4 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce5b68 far=0x65d900 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x33000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb9580a9 x2=0x28ce5b54 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce5e14 far=0x541610 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53e000/0x11e000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958145 x2=0x28ce5e00 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce60b4 far=0x541617 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x11b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb9581dd x2=0x28ce60a0 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce6354 far=0x541489 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x11b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958275 x2=0x28ce6340 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce65f4 far=0x541484 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x11b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958313 x2=0x28ce65e0 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce6894 far=0x5414a5 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x11b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb9583ba x2=0x28ce6880 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce6b34 far=0x5414a0 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x11b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95846a x2=0x28ce6b20 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce6dd4 far=0x5415f4 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x11b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95851a x2=0x28ce6dc0 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce7074 far=0x5415ef sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x11b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb9585ca x2=0x28ce7060 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce7314 far=0x4d6a39 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x46f000/0xcf000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95867a x2=0x28ce7300 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce75b4 far=0x4d6a42 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4d6000/0x68000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95872a x2=0x28ce75a0 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce7854 far=0x5414dd sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x11b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb9587da x2=0x28ce7840 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce7afc far=0x5414e4 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x11b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95888a x2=0x28ce7ae8 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce7db4 far=0x541899 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x11b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95893a x2=0x95ef64 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce8070 far=0x5418a1 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x11b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb9589ea x2=0x95ef54 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce8334 far=0x69d004 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x69d000/0x1000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958a9b x2=0x95ef44 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce8604 far=0x69d008 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x69d000/0x1000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958b52 x2=0x95ef34 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce88d4 far=0x69d014 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x69d000/0x1000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958c09 x2=0x95ef24 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce8ba4 far=0x69d018 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x69d000/0x1000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958cc0 x2=0x95ef14 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce8e74 far=0x6639f0 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x33000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958d77 x2=0x95ef04 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce9144 far=0x6639f4 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x663000/0x2d000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958e2e x2=0x95eef4 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce9414 far=0x445be3 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40c000/0x63000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958eec x2=0x95eee4 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce96e0 far=0x44d59d sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x445000/0x2a000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958fa5 x2=0x95eed4 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce99ac far=0x49c3f3 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x46f000/0x67000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95905e x2=0x95eec4 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce9ca8 far=0x45a8ec sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x44d000/0x22000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb959120 x2=0x95eeb4 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce9f78 far=0x45a8f3 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x45a000/0x15000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb9591d7 x2=0x95eea4 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x40ec2f sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40c000/0x39000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x40ec30 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40e000/0x37000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x40ed5c sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40e000/0x37000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x40ed5d sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40e000/0x37000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x40ee83 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40e000/0x37000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x40ee84 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40e000/0x37000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x40f624 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40e000/0x37000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x40f625 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40f000/0x36000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x40f751 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40f000/0x36000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x40f752 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40f000/0x36000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x40f878 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40f000/0x36000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x40f879 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40f000/0x36000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x40ff33 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40f000/0x36000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x40ff34 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40f000/0x36000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x40fffc sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40f000/0x36000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x40fffd sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40f000/0x36000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x410000 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x410000/0x35000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4100c5 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x410000/0x35000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4100c6 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x410000/0x35000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4105e4 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x410000/0x35000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4105e5 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x410000/0x35000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x410626 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x410000/0x35000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x410627 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x410000/0x35000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x410668 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x410000/0x35000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x410669 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x410000/0x35000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x411092 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x410000/0x35000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x411093 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x411000/0x34000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4110ea sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x411000/0x34000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4110eb sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x411000/0x34000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x411142 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x411000/0x34000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x411143 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x411000/0x34000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x410d9b sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x410000/0x1000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x410d9c sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x410000/0x1000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x437f4d sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x411000/0x34000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x437f4e sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x437000/0xe000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x438027 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x437000/0xe000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x438028 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x438000/0xd000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x446896 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x445000/0x8000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x446897 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x446000/0x7000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4472df sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x446000/0x7000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4472e0 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x447000/0x6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[BALANCE] busiest core 0.0% -> 13.9%: 4w any->0 13.9%
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x447316 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x447000/0x6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x447317 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x447000/0x6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x447f90 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x447000/0x6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x447f91 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x447000/0x6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4487ce sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x447000/0x6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4487cf sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x448000/0x5000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x448baa sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x448000/0x5000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x448bab sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x448000/0x5000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x44fce8 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x44d000/0xd000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x44fce9 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x44f000/0xb000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4567b1 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x44f000/0xb000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4567b2 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x456000/0x4000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x457075 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x456000/0x4000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x457076 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x457000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x45756f sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x457000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x457570 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x457000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x457f2f sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x457000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x457f30 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x457000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x458662 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x457000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x458663 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x458000/0x2000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x458740 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x458000/0x2000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x458741 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x458000/0x2000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x45882e sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x458000/0x2000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x45882f sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x458000/0x2000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x458a77 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x458000/0x2000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x458a78 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x458000/0x2000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4cf7b1 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x49c000/0x3a000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4cf7b2 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4cf000/0x7000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4cfbf3 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4cf000/0x7000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4cfbf4 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4cf000/0x7000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4cfc19 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4cf000/0x7000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4cfc1a sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4cf000/0x7000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4cfc79 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4cf000/0x7000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4cfc7a sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4cf000/0x7000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4d6a4e sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4d6000/0x68000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4d6a4f sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4d6000/0x68000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4d9f8f sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4d6000/0x68000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4d9f90 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4d9000/0x65000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4da035 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4d9000/0x65000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4da036 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4da000/0x64000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4da32f sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4da000/0x64000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4da330 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4da000/0x64000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4da3d5 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4da000/0x64000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4da3d6 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4da000/0x64000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4da4ee sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4da000/0x64000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4da4ef sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4da000/0x64000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4efde4 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4da000/0x64000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4efde5 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4ef000/0x4f000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4f0363 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4ef000/0x4f000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4f0364 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4f0000/0x4e000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x507497 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4f0000/0x4e000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x507498 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x507000/0x37000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x507af6 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x507000/0x37000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x507af7 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x507000/0x37000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x5133ba sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x507000/0x37000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x5133bb sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x513000/0x2b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x51341f sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x513000/0x2b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x513420 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x513000/0x2b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x514341 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x513000/0x2b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x514342 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x514000/0x2a000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x540ece sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53e000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x540ecf sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x540000/0x1000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x5410ee sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x11b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x5410ef sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x11b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x549d7a sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x11b000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x549d7b sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x549000/0x113000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x549f55 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x549000/0x113000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x549f56 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x549000/0x113000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x46f0ec sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x46f000/0x2d000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x46f0ed sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x46f000/0x2d000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x46fe53 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x46f000/0x2d000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x46fe54 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x46f000/0x2d000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x4d656e sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4d6000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x4d656f sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4d6000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cdc0fc far=0x53ba84 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x514000/0x2a000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95ac81 x2=0x95f2cc x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cdc3cc far=0x53ba7d sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95ad3b x2=0x95f2bc x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cdc69c far=0x53b8dd sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95adf5 x2=0x95f2ac x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cdc96c far=0x53bbc2 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95aeaf x2=0x95f29c x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cdcc3c far=0x53bbd1 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95af69 x2=0x95f28c x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cdcf0c far=0x53b9ee sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95b023 x2=0x95f27c x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cdd1dc far=0x53b849 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95b0dd x2=0x95f26c x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cdd4ac far=0x53ba04 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95b197 x2=0x95f25c x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cdd77c far=0x53b86e sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95b251 x2=0x95f24c x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cdda4c far=0x53ba1a sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95b30b x2=0x95f23c x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cddd1c far=0x53b893 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95b3c5 x2=0x95f22c x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cddfec far=0x53ba27 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95b47f x2=0x95f2dc x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cde2bc far=0x53ba35 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95b539 x2=0x95f21c x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cde58c far=0x53b993 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95b5f3 x2=0x95f20c x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cde85c far=0x53ba59 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95b6ad x2=0x95f1fc x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cdeb2c far=0x53b8b8 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95b767 x2=0x95f1ec x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cdedf0 far=0x53ba9d sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95b81e x2=0x28cdede0 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cdf0a4 far=0x53b902 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95b8cf x2=0x28cdf094 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cdf358 far=0x53bab3 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95b989 x2=0x28cdf348 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cdf60c far=0x53b927 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95ba43 x2=0x28cdf5fc x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cdf8c0 far=0x53badc sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95bafd x2=0x28cdf8b0 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cdfb74 far=0x53b96e sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53b000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95bbb7 x2=0x28cdfb64 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x45a8dc sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x45a000/0x15000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x45a8dd sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x45a000/0x15000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x59410a sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x549000/0x113000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x59410b sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x594000/0xc8000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x596f6a sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x594000/0xc8000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x596f6b sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x596000/0xc6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x5980d8 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x596000/0xc6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x5980d9 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x598000/0xc4000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce0668 far=0x453c95 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x44f000/0x7000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95be8a x2=0x28ce0648 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce092c far=0x453c16 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x453000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95bf4f x2=0x28ce090c x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce0bf8 far=0x453c1f sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x453000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95c014 x2=0x28ce0bd8 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce0ed4 far=0x453c98 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x453000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95c0d9 x2=0x95f32c x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x462fdf sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x45a000/0x15000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x462fe0 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x462000/0xd000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x463501 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x462000/0xd000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x463502 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x463000/0xc000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce15b8 far=0x595304 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x594000/0x2000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95c29f x2=0x95f31c x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce1898 far=0x595351 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x595000/0x1000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95c364 x2=0x95f30c x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce1b78 far=0x59533f sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x595000/0x1000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95c429 x2=0x95f2fc x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee160 far=0x5a15a4 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x598000/0xc4000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95131a x2=0x28cee14c x3=0xe8 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cee2a4 far=0x5a15a5 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x5a1000/0xbb000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95135b x2=0x28cee294 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce205c far=0x595324 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x595000/0x1000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95c56f x2=0x95f2ec x3=0x1 x18=0x0
+[NXLDR] attach name=C:\NFS Hot Pursuit 2\scripts\HP2WSFix.asi status=00000000 base=FB950000
+[NXLDR] return name=C:\NFS Hot Pursuit 2\scripts\HP2WSFix.asi status=00000000 module=FB950000
+[NXLDR] enter name=C:\NFS Hot Pursuit 2\scripts\NFSHP2KeyFix.asi search=00000001 flags_ptr=0095F8B4 module_ptr=0095F8B8 teb=6AFE2000
+[NXLDR] path name=C:\NFS Hot Pursuit 2\scripts\NFSHP2KeyFix.asi status=00000000 path=003AF8E8
+[NXLDR] load name=C:\NFS Hot Pursuit 2\scripts\NFSHP2KeyFix.asi status=00000000 wm=003A4458
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28cf258c far=0x65d01c sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb8f11a0 x2=0x28cf2580 x3=0xfb8f12b0 x18=0x0
+[NXLDR] attach name=C:\NFS Hot Pursuit 2\scripts\NFSHP2KeyFix.asi status=00000000 base=FB8F0000
+[NXLDR] return name=C:\NFS Hot Pursuit 2\scripts\NFSHP2KeyFix.asi status=00000000 module=FB8F0000
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c82804 far=0x65d128 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfc320902 x2=0xfc381504 x3=0x6f806080 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c82804 far=0x65d0ec sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfc320902 x2=0xfc381514 x3=0x6f806080 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c82804 far=0x65d0d8 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfc320902 x2=0xfc381524 x3=0x6f806080 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c82804 far=0x65d224 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfc320902 x2=0xfc381534 x3=0x6f806080 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c82804 far=0x65d0cc sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfc320902 x2=0xfc381544 x3=0x6f806080 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c82804 far=0x65d0c8 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfc320902 x2=0xfc381554 x3=0x6f806080 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c82804 far=0x65d1e8 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfc320902 x2=0xfc38155c x3=0x6f806080 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c82804 far=0x65d218 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfc320902 x2=0xfc38156c x3=0x6f806080 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28c82804 far=0x65d2ac sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfc320902 x2=0xfc38157c x3=0x6f806080 x18=0x0
+[NXLDR] enter name=D3D8.DLL search=00000001 flags_ptr=0095FDA4 module_ptr=0095FDA8 teb=6AFE2000
+[NXLDR] path name=D3D8.DLL status=00000000 path=003AC128
+[NXLDR] load name=D3D8.DLL status=00000000 wm=003A3558
+[NXLDR] attach name=D3D8.DLL status=00000000 base=FE0C0000
+[NXLDR] return name=D3D8.DLL status=00000000 module=FE0C0000
+[EXC] desc=0x00000101 esr=0x92000006 pc=0x28d5d398 far=0x190 sp=0x14ca2c70 lr=0x28d5d390 kind=read dfsc=0x6 region=0/0x200000 type=0 attr=0 perm=0 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0x190 x2=0x28aeb528 x3=0x71b74440 x18=0x0
+[EXC] x4=0x1 x5=0x1 x6=0x28aeb508 x7=0xff6bd620 x8=0x0 x9=0x0 x10=0x0 x11=0x1d x12=0xff6be4e0
+[EXC] x13=0x0 x14=0x95fdc0 x15=0x95fde8 x16=0x12609b0 x17=0x12609c0 x18=0x0 x19=0x0 x20=0x0 x21=0x0
+[EXC] x22=0x0 x23=0x0 x24=0x0 x25=0x0 x26=0x246 x27=0x5380e3 x28=0x14ca2c80 x29=0x14ca2d20 x30=0x28d5d390
+[BOX64 FAULT] x86=005380e6 block=005380b0+48 eax=00000000 ecx=0000001d edx=ff6be4e0 ebx=00000000 esp=0095fdc0 ebp=0095fde8 esi=012609b0 edi=012609c0
+[BOX64] status=c0000005 EIP=005380e6 EAX=00000000 instructions=0 fault=00000190 access=0
+[BOX64FAULT] eip=005380e6 esp=0095fdc0 ebp=0095fde8 eax=00000000 ebx=00000000 ecx=0000001d edx=ff6be4e0 esi=012609b0 edi=012609c0 flags=00000246
+[BOX64FAULT] pc[005380e6]=005380e6 NFSHP2.exe+1380e6 preceding=33db885de76a02ff15b8d06500895dfc
+[BOX64FAULT] stack 0095fdc0: 012609c0 012609b0 00000004 00000040
+[BOX64FAULT] stack 0095fdd0: 0095fdc0 012609c0 0095feb4 005c61dc
+[BOX64FAULT] stack candidate[0095fddc]=005c61dc NFSHP2.exe+1c61dc preceding=59598bc65ec9c3cc5643323058433030
+[BOX64FAULT] stack 0095fde0: 00665280 00000000 0095fec4 00537fd8
+[BOX64FAULT] stack candidate[0095fde0]=00665280 NFSHP2.exe+265280 preceding=ffffffff228053002f80530000000000
+[BOX64FAULT] stack candidate[0095fdec]=00537fd8 NFSHP2.exe+137fd8 preceding=00c705cc886c0050795300e8d8000000
+[BOX64FAULT] stack 0095fdf0: 006a5d8c 006a5d90 006c4e40 00000000
+[BOX64FAULT] stack candidate[0095fdf0]=006a5d8c NFSHP2.exe+2a5d8c preceding=63657074696f6e206572726f72290000
+[BOX64FAULT] stack candidate[0095fdf4]=006a5d90 NFSHP2.exe+2a5d90 preceding=696f6e206572726f722900004e554c00
+[BOX64FAULT] stack candidate[0095fdf8]=006c4e40 NFSHP2.exe+2c4e40 preceding=00000000000000000010000000000000
+[BOX64FAULT] stack 0095fe00: 00000000 6aff1000 012609c0 01260998
+[BOX64FAULT] stack 0095fe10: 0000009c 00000006 00000002 000023f0
+[BOX64FAULT] stack 0095fe20: 00000002 00000000 00000000 00000000
+[BOX64FAULT] stack 0095fe30: 00000000 00000000 00000000 00000000
+[BOX64FAULT] frame[0095fdec]=00537fd8 NFSHP2.exe+137fd8 preceding=00c705cc886c0050795300e8d8000000
+[BOX64FAULT] frame[0095fec8]=005c77a1 NFSHP2.exe+1c77a1 preceding=759c5656ff15ecd0650050e81f06f7ff
+[BOX64FAULT] frame[0095ff54]=ff374190 KERNEL32.dll+24190 preceding=5589e5538b5d08ff7504ff750453ffd2
+[BOX64FAULT] frame[0095ff6c]=ff6be613 ntdll.dll+4e613 preceding=e4f031c98b550c8b4510890424ff5508
+[BOX64FAULT] frame[0095ff80]=ff6befc4 ntdll.dll+4efc4 preceding=0000005051ff3568716fffe838f6ffff
+[LIFECYCLE] baseline tid=0 code=00000000 running=1 objects=1 connections=1 zombies=0 reaped=0 pipes=4 tebs=0 pthreads=0 exits=0 engines=0
+[THREAD] NtCreateThreadEx tid=8 start=0x6446a3 param=0x1261a50 flags=0x1 stack_reserve=0x0 err=0
+[WOW64 THREAD] entry=0x6446a3 TEB32=0x6afd2000 status=00000000
+[THREAD] NtCreateThreadEx tid=12 start=0xfc991510 param=0xfc980000 flags=0x1 stack_reserve=0x0 err=0
+[WOW64 THREAD] entry=0xfc991510 TEB32=0x6afc2000 status=00000000
+[NXLDR] enter name=opengl32.dll search=00000001 flags_ptr=0095F760 module_ptr=0095F764 teb=6AFE2000
+[NXLDR] path name=opengl32.dll status=00000000 path=003AF7F0
+[NXLDR] load name=opengl32.dll status=00000000 wm=003A36D8
+[NXLDR] attach name=opengl32.dll status=00000000 base=FCAB0000
+[NXLDR] return name=opengl32.dll status=00000000 module=FCAB0000
+[NXCOMP] presenting the screen through OpenGL on NV12B, 4.3 (Core Profile) Mesa 26.2.2 (git-c689872669)
+[NXCOMP] screen handed to an OpenGL program
+[NXGL] screen handed to an OpenGL surface
+[NXGL] EGL Mesa Project 1.4, 21 configs; window surface for format 27, raw 0
+[NXGL] 32-bit address space: 32-bit programs get buffer storage through the driver's own mappings
+[NXGL] screen returned to the compositor
+[NXCOMP] screen taken back from the OpenGL program
+[THREAD] NtCreateThreadEx tid=16 start=0xfcde8670 param=0x7a50020 flags=0x1 stack_reserve=0x0 err=0
+[WOW64 THREAD] entry=0xfcde8670 TEB32=0x6afb2000 status=00000000
+[NXWIN] thread 0004 activates hwnd 0x20030 (style 0x4c00000), previous 0x0, mouse 0 focus 1
+[NXWIN] WM_ACTIVATEAPP 1 to hwnd 0x20030 (thread 0000 -> 0004)
+[NXWIN] WM_ACTIVATEAPP 1 to hwnd 0x20032 (thread 0000 -> 0004)
+[NXDELAY] enter base=FE170000 desc=FE182344 addr=FE1850EC flags=00000000
+[NXDELAY] dll=ole32.dll id=1 phmod=FE1850E0 current=00000000
+[NXDELAY] loading dll=ole32.dll
+[NXLDR] enter name=ole32.dll search=00000000 flags_ptr=00000000 module_ptr=FE1850E0 teb=6AFE2000
+[NXLDR] path name=ole32.dll status=00000000 path=012805D8
+[NXLDR] load name=ole32.dll status=00000000 wm=003A3858
+[NXLDR] attach name=ole32.dll status=00000000 base=FC740000
+[NXLDR] return name=ole32.dll status=00000000 module=FC740000
+[NXDELAY] loaded dll=ole32.dll status=00000000 module=FC740000
+[NXDELAY] resolve dll=ole32.dll proc=CoRegisterInitializeSpy
+[NXDELAY] success dll=ole32.dll id=1 proc=FC65BCD0
+[NXDELAY] enter base=FE170000 desc=FE182344 addr=FE1850E8 flags=00000000
+[NXDELAY] dll=ole32.dll id=0 phmod=FE1850E0 current=FC740000
+[NXDELAY] resolve dll=ole32.dll proc=CoInitializeEx
+[NXDELAY] success dll=ole32.dll id=0 proc=FC65CE40
+[NXLDR] enter name=imm32 search=00000001 flags_ptr=0095E99C module_ptr=0095E9A0 teb=6AFE2000
+[NXLDR] path name=imm32 status=00000000 path=012AC028
+[NXLDR] load name=imm32 status=00000000 wm=003A3480
+[NXLDR] attach name=imm32 status=00000000 base=FE170000
+[NXLDR] return name=imm32 status=00000000 module=FE170000
+[NXCOMP] screen handed to an OpenGL program
+[NXGL] screen handed to an OpenGL surface
+[NXWIN] thread 0004 activates hwnd 0x0 (style 0), previous 0x20030, mouse 0 focus 1
+[NXWIN] WM_ACTIVATEAPP 0 to hwnd 0x20030 (thread 0004 -> 0000)
+[NXWIN] WM_ACTIVATEAPP 0 to hwnd 0x2003c (thread 0004 -> 0000)
+[NXWIN] WM_ACTIVATEAPP 0 to hwnd 0x20032 (thread 0004 -> 0000)
+[LIFECYCLE] exit tid=16 code=00000000 running=4 objects=4 connections=4 zombies=0 reaped=0 pipes=13 tebs=3 pthreads=3 exits=1 engines=0
+[NXGL] screen returned to the compositor
+[THREAD] NtCreateThreadEx tid=20 start=0x6446a3 param=0x1261ad8 flags=0x1 stack_reserve=0x0 err=0
+[WOW64 THREAD] entry=0x6446a3 TEB32=0x6afa2000 status=00000000
+[NXCOMP] screen taken back from the OpenGL program
+[NXWIN] thread 0004 shows hwnd 0x20040 with 5 (style 0x84c90000, visible 0)
+[NXWIN] hwnd 0x20040 says EAGL PC
+[NXWIN] thread 0004 activates hwnd 0x20040 (style 0x95c90000), previous 0x0, mouse 0 focus 1
+[NXWIN] WM_ACTIVATEAPP 1 to hwnd 0x20040 (thread 0000 -> 0004)
+[NXWIN] WM_ACTIVATEAPP 1 to hwnd 0x10048 (thread 0000 -> 0004)
+[NXWIN] thread 0004 shows hwnd 0x20040 with 5 (style 0x95c90000, visible 1)
+[NXWIN] hwnd 0x20040 says EAGL PC
+[THREAD] NtCreateThreadEx tid=24 start=0xfcde8670 param=0x87b0020 flags=0x1 stack_reserve=0x0 err=0
+[WOW64 THREAD] entry=0xfcde8670 TEB32=0x6af92000 status=00000000
+[NXCOMP] screen handed to an OpenGL program
+[NXGL] screen handed to an OpenGL surface
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ced3b0 far=0x46f3a5 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x46f000/0x2d000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95126a x2=0x28ced39c x3=0xe9 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ced4f4 far=0x46f3a6 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x46f000/0x2d000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb9512ab x2=0x28ced4e4 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce5358 far=0x40c501 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x40c000/0x2000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb957ec6 x2=0x28ce5344 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce5608 far=0x53eb84 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53e000/0x2000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb957f67 x2=0x28ce55f4 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce58b8 far=0x53ed7c sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x53e000/0x2000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958008 x2=0x28ce58a4 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce5b68 far=0x65d900 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x65d000/0x6000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb9580a9 x2=0x28ce5b54 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce5e14 far=0x541610 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x8000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958145 x2=0x28ce5e00 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce60b4 far=0x541617 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x8000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb9581dd x2=0x28ce60a0 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce6354 far=0x541489 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x8000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958275 x2=0x28ce6340 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce65f4 far=0x541484 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x8000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958313 x2=0x28ce65e0 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce6894 far=0x5414a5 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x8000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb9583ba x2=0x28ce6880 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce6b34 far=0x5414a0 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x8000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95846a x2=0x28ce6b20 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce6dd4 far=0x5415f4 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x8000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95851a x2=0x28ce6dc0 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce7074 far=0x5415ef sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x8000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb9585ca x2=0x28ce7060 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce7314 far=0x4d6a39 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4d6000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95867a x2=0x28ce7300 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce75b4 far=0x4d6a42 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x4d6000/0x3000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95872a x2=0x28ce75a0 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce7854 far=0x5414dd sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x8000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb9587da x2=0x28ce7840 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce7afc far=0x5414e4 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x8000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95888a x2=0x28ce7ae8 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce7db4 far=0x541899 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x8000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95893a x2=0x95f220 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce8070 far=0x5418a1 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x541000/0x8000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb9589ea x2=0x95f210 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce8334 far=0x69d004 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x69d000/0x1000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958a9b x2=0x95f200 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce8604 far=0x69d008 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x69d000/0x1000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958b52 x2=0x95f1f0 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce88d4 far=0x69d014 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x69d000/0x1000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958c09 x2=0x95f1e0 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce8ba4 far=0x69d018 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x69d000/0x1000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958cc0 x2=0x95f1d0 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce8e74 far=0x6639f0 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x663000/0x2d000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958d77 x2=0x95f1c0 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce9144 far=0x6639f4 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x663000/0x2d000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958e2e x2=0x95f1b0 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce9414 far=0x445be3 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x445000/0x1000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958eec x2=0x95f1a0 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce96e0 far=0x44d59d sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x44d000/0x2000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb958fa5 x2=0x95f190 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce99ac far=0x49c3f3 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x49c000/0x33000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb95905e x2=0x95f180 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce9ca8 far=0x45a8ec sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x45a000/0x8000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb959120 x2=0x95f170 x3=0x1 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28ce9f78 far=0x45a8f3 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0x45a000/0x8000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=untracked
+[EXC] x0=0xf60be5c0 x1=0xfb9591d7 x2=0x95f160 x3=0x1 x18=0x0
+[NXLDR] enter name=Win2kHook.dll search=00000001 flags_ptr=0095FD48 module_ptr=0095FD4C teb=6AFE2000
+[NXLDR] path name=Win2kHook.dll status=00000000 path=01332B48
+[NXLDR] load name=Win2kHook.dll status=00000000 wm=003A45D8
+[NXLDR] attach name=Win2kHook.dll status=00000000 base=07B50000
+[NXLDR] return name=Win2kHook.dll status=00000000 module=07B50000
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28fd97b0 far=0xfbd6a19c sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0xfbd6a000/0x13000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=none
+[EXC] x0=0xf60be5c0 x1=0xfb8f1352 x2=0x28fd97a4 x3=0xfb8f1820 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28fd9a00 far=0xfbd6a1b4 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0xfbd6a000/0x13000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=none
+[EXC] x0=0xf60be5c0 x1=0xfb8f13c7 x2=0x28fd99f4 x3=0xfb8f1940 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28fe9050 far=0xfbd6a100 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0xfbd6a000/0x13000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=none
+[EXC] x0=0xf60be5c0 x1=0xfb8f1b60 x2=0x28fe9044 x3=0xfb8f1c20 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28fe915c far=0xfbd6a108 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0xfbd6a000/0x13000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=none
+[EXC] x0=0xf60be5c0 x1=0xfb8f1b8c x2=0x28fe9150 x3=0xfb8f1ca0 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28fe926c far=0xfbd6a10c sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0xfbd6a000/0x13000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=none
+[EXC] x0=0xf60be5c0 x1=0xfb8f1bb7 x2=0x28fe9260 x3=0xfb8f2090 x18=0x0
+[EXC] desc=0x00000101 esr=0x9200004f pc=0x28fe9388 far=0xfbd6a118 sp=0x14ca2c70 lr=0x0 kind=write dfsc=0xf region=0xfbd6a000/0x13000 type=0x8 attr=0 perm=0x5 ipc=0 device=0 alias=none
+[EXC] x0=0xf60be5c0 x1=0xfb8f1be2 x2=0xfb928494 x3=0xfb8f2270 x18=0x0
+[NXLDR] enter name=mmdevapi.dll search=00000009 flags_ptr=0095F7F8 module_ptr=0095F7FC teb=6AFE2000
+[NXLDR] path name=mmdevapi.dll status=00000000 path=0137F320
+[NXLDR] load name=mmdevapi.dll status=00000000 wm=003A4698
+[NXLDR] attach name=mmdevapi.dll status=00000000 base=FAE50000
+[NXLDR] return name=mmdevapi.dll status=00000000 module=FAE50000
+[NXLDR] enter name=winenxaudio.drv search=00000001 flags_ptr=0095EFF4 module_ptr=0095EFF8 teb=6AFE2000
+[NXLDR] path name=winenxaudio.drv status=00000000 path=0137F320
+[NXLDR] load name=winenxaudio.drv status=00000000 wm=003A48D8
+[NXLDR] attach name=winenxaudio.drv status=00000000 base=FAC20000
+[NXLDR] return name=winenxaudio.drv status=00000000 module=FAC20000
+[THREAD] NtCreateThreadEx tid=28 start=0xfae535c0 param=0xd54 flags=0x1 stack_reserve=0x0 err=0
+[WOW64 THREAD] entry=0xfae535c0 TEB32=0x6af82000 status=00000000
+[LIFECYCLE] exit tid=28 code=00000000 running=6 objects=6 connections=6 zombies=0 reaped=1 pipes=19 tebs=5 pthreads=5 exits=2 engines=1
+[THREAD] NtCreateThreadEx tid=32 start=0xfae57160 param=0x1282638 flags=0x1 stack_reserve=0x0 err=0
+[WOW64 THREAD] entry=0xfae57160 TEB32=0x6afb2000 status=00000000
+[THREAD] NtCreateThreadEx tid=36 start=0xfbe2df40 param=0x137f828 flags=0x1 stack_reserve=0x0 err=0
+[WOW64 THREAD] entry=0xfbe2df40 TEB32=0x6af72000 status=00000000
+[LIFECYCLE] exit tid=36 code=00000000 running=7 objects=8 connections=7 zombies=0 reaped=2 pipes=22 tebs=6 pthreads=6 exits=3 engines=1
+[LIFECYCLE] exit tid=32 code=00000000 running=6 objects=7 connections=6 zombies=1 reaped=2 pipes=19 tebs=5 pthreads=5 exits=4 engines=1
+[THREAD] NtCreateThreadEx tid=40 start=0xfae57160 param=0x1282638 flags=0x1 stack_reserve=0x0 err=0
+[WOW64 THREAD] entry=0xfae57160 TEB32=0x6af72000 status=00000000
+[THREAD] NtCreateThreadEx tid=44 start=0xfbe2df40 param=0x137f828 flags=0x1 stack_reserve=0x0 err=0
+[WOW64 THREAD] entry=0xfbe2df40 TEB32=0x6af82000 status=00000000
+[THREAD] NtCreateThreadEx tid=48 start=0x5f3b20 param=0x0 flags=0x1 stack_reserve=0x0 err=0
+[WOW64 THREAD] entry=0x5f3b20 TEB32=0x6af62000 status=00000000
+[THREAD] NtCreateThreadEx tid=52 start=0x6446a3 param=0x1261b60 flags=0x1 stack_reserve=0x0 err=0
+[WOW64 THREAD] entry=0x6446a3 TEB32=0x6af52000 status=00000000
+[THREAD] NtCreateThreadEx tid=56 start=0x6446a3 param=0x1261be8 flags=0x1 stack_reserve=0x0 err=0
+[WOW64 THREAD] entry=0x6446a3 TEB32=0x6af42000 status=00000000
+[PROGRESS] 5s reads=4906 read_ms=169 read_mb=5 sd_reads=591 sd_ms=1639 sd_mb=117 cache_hits=5643 cache_mb=1 syscalls=748452 frames=56 heap_used_mb=668 heap_free_mb=1223 sys_top=31:646979,34:70939,140f:6144 native_entries=761286 block_tests=4 invalidations=1498 marked_lookups=8 callret_clean=0 callret_dirty=0 translator_locks=6068 inline_unix=13433 code_mb=6/16 code_all_mb=6 purged=0/0/0MB/0ms gl_frames=43 swap_ms=10 gl_calls=12940 gl_ms=262 copy_mb=0 persistent_fail=0 pinned=2 gl_top=12:64/43,3100:41/2,10:29/1,136:18/46
+[MEMPOOL] arena_mb=72 pooled_allocs=171 block_allocs=25 shared_allocs=0 backing_slots=159 mapping_slots=1012 section_views=0 anchors=0 anchor_mb=0 section_failures=0
+[BALANCE] busiest core 46.0% -> 40.6%: 20w 0->2 4.2% 44w 0->1 1.2%
+[THREAD] NtCreateThreadEx tid=60 start=0xfbd5d300 param=0xe58 flags=0x1 stack_reserve=0x0 err=0
+[WOW64 THREAD] entry=0xfbd5d300 TEB32=0x6af32000 status=00000000
+[PROGRESS] 15s reads=14020 read_ms=388 read_mb=9 sd_reads=719 sd_ms=1804 sd_mb=122 cache_hits=14640 cache_mb=2 syscalls=1315314 frames=389 heap_used_mb=686 heap_free_mb=1205 sys_top=34:483124,13d0:43676,6:9114 native_entries=1388235 block_tests=5 invalidations=1548 marked_lookups=10 callret_clean=0 callret_dirty=0 translator_locks=6620 inline_unix=73538 code_mb=7/16 code_all_mb=7 purged=0/0/0MB/0ms gl_frames=376 swap_ms=954 gl_calls=69063 gl_ms=4944 copy_mb=0 persistent_fail=0 pinned=2 gl_top=12:4011/333,856:506/333,111:71/53,320:34/53
+[MEMPOOL] arena_mb=76 pooled_allocs=231 block_allocs=26 shared_allocs=0 backing_slots=169 mapping_slots=1026 section_views=0 anchors=0 anchor_mb=0 section_failures=0
+[THREADS] 23 threads use 0.67 cores: 4w@0 55.5% 24w@1 3.3% 44w@1 2.3% 0s@0 1.3% 20w@2 0.9% 52w@2 0.9% 20s@2 0.5%
+[SERVER] 95154 requests, 51746 ms: select 11002 avg 4627us 50917ms create_file 674 avg 315us 212ms set_queue_mask 44407 avg 3us 165ms create_mapping 63 avg 2284us 143ms get_handle_fd 16060 avg 5us 84ms event_op 7246 avg 9us 67ms close_handle 1030 avg 30us 31ms ioctl 3092 avg 7us 24ms
+[INPUT] mouse at 0,0 over hwnd=00020040 class=EAGL PC atom=c01b tid=4 style=95090000 ex=00000008 rect=0,0-1280,720 capture=00000000
+[NXDELAY] enter base=FE370000 desc=FE4162D4 addr=FE4218A4 flags=00000000
+[NXDELAY] dll=imm32.dll id=3 phmod=FE421888 current=00000000
+[NXDELAY] loading dll=imm32.dll
+[NXLDR] enter name=imm32.dll search=00000000 flags_ptr=00000000 module_ptr=FE421888 teb=6AFE2000
+[NXLDR] path name=imm32.dll status=00000000 path=07C7DAC0
+[NXLDR] load name=imm32.dll status=00000000 wm=003A3480
+[NXLDR] attach name=imm32.dll status=00000000 base=FE170000
+[NXLDR] return name=imm32.dll status=00000000 module=FE170000
+[NXDELAY] loaded dll=imm32.dll status=00000000 module=FE170000
+[NXDELAY] resolve dll=imm32.dll proc=ImmProcessKey
+[NXDELAY] success dll=imm32.dll id=3 proc=FE17C120
+[NXINPUT] the cursor is at 0,0, the stick moved 0,0
+[PROGRESS] 25s reads=34392 read_ms=699 read_mb=19 sd_reads=822 sd_ms=1991 sd_mb=134 cache_hits=34913 cache_mb=1 syscalls=2099979 frames=1271 heap_used_mb=706 heap_free_mb=1185 sys_top=34:288977,13d0:175933,14ca:122531 native_entries=3790389 block_tests=5 invalidations=1580 marked_lookups=10 callret_clean=0 callret_dirty=0 translator_locks=7107 inline_unix=1691112 code_mb=7/16 code_all_mb=7 purged=0/0/0MB/0ms gl_frames=1258 swap_ms=2789 gl_calls=1682664 gl_ms=10519 copy_mb=0 persistent_fail=0 pinned=2 gl_top=12:4030/882,856:690/882,863:315/71526,111:245/43
+[MEMPOOL] arena_mb=80 pooled_allocs=275 block_allocs=27 shared_allocs=0 backing_slots=183 mapping_slots=1040 section_views=0 anchors=0 anchor_mb=0 section_failures=0
+[THREADS] 23 threads use 1.00 cores: 4w@0 50.9% 24w@1 32.6% 0s@0 7.7% 44w@1 2.5% 20w@2 1.4% 52w@2 1.1% 20s@2 0.7% 48w@1 0.6% 60s@1 0.5%
+[SERVER] 350482 requests, 53044 ms: select 11594 avg 4439us 51467ms set_queue_mask 179072 avg 3us 687ms get_message 122595 avg 5us 636ms get_handle_fd 21710 avg 4us 96ms event_op 5950 avg 9us 58ms ioctl 2886 avg 9us 28ms release_mutex 2655 avg 10us 28ms set_async_direct_result 1924 avg 9us 17ms
+[PROGRESS] 35s reads=35288 read_ms=720 read_mb=20 sd_reads=826 sd_ms=2004 sd_mb=134 cache_hits=35805 cache_mb=2 syscalls=2955041 frames=2086 heap_used_mb=706 heap_free_mb=1185 sys_top=14ca:281086,13d0:198851,ff:170590 native_entries=8165466 block_tests=5 invalidations=1580 marked_lookups=10 callret_clean=0 callret_dirty=0 translator_locks=7161 inline_unix=5211368 code_mb=7/16 code_all_mb=7 purged=0/0/0MB/0ms gl_frames=2073 swap_ms=3166 gl_calls=5198974 gl_ms=12257 copy_mb=0 persistent_fail=0 pinned=2 gl_top=863:635/162097,12:574/815,2590:118/1298598,391:54/373295
+[MEMPOOL] arena_mb=80 pooled_allocs=275 block_allocs=27 shared_allocs=0 backing_slots=183 mapping_slots=1040 section_views=0 anchors=0 anchor_mb=0 section_failures=0
+[THREADS] 23 threads use 1.72 cores: 4w@0 85.8% 24w@1 64.7% 0s@0 12.7% 44w@1 2.5% 48w@1 2.2% 52w@2 1.2% 60s@1 0.6% 12w@1 0.5% 52s@2 0.5%
+[SERVER] 511674 requests, 55915 ms: select 12955 avg 4130us 53510ms get_message 281126 avg 5us 1441ms set_queue_mask 201895 avg 3us 783ms release_mutex 4579 avg 13us 63ms event_op 3263 avg 16us 55ms ioctl 2880 avg 9us 27ms set_async_direct_result 1920 avg 6us 13ms recv_socket 1920 avg 5us 11ms
+[PROGRESS] 45s reads=46028 read_ms=894 read_mb=25 sd_reads=884 sd_ms=2112 sd_mb=141 cache_hits=46494 cache_mb=2 syscalls=4151244 frames=2892 heap_used_mb=709 heap_free_mb=1182 sys_top=34:476513,13d0:196908,14ca:160000 native_entries=11822268 block_tests=5 invalidations=1586 marked_lookups=10 callret_clean=0 callret_dirty=0 translator_locks=7565 inline_unix=7672197 code_mb=8/16 code_all_mb=8 purged=0/0/0MB/0ms gl_frames=2879 swap_ms=3565 gl_calls=7655866 gl_ms=13892 copy_mb=0 persistent_fail=0 pinned=2 gl_top=12:639/806,863:551/124014,2590:71/731944,391:47/325211
+[MEMPOOL] arena_mb=80 pooled_allocs=284 block_allocs=28 shared_allocs=0 backing_slots=189 mapping_slots=1047 section_views=0 anchors=0 anchor_mb=0 section_failures=0
+[THREADS] 23 threads use 1.62 cores: 4w@0 86.3% 24w@1 55.1% 0s@0 9.6% 48w@1 2.8% 44w@1 2.6% 52w@2 1.2% 20w@2 0.7% 60s@1 0.7% 12w@1 0.5% 20s@2 0.5% 44s@1 0.5% 52s@2 0.5%
+[SERVER] 401938 requests, 51209 ms: select 13750 avg 3588us 49341ms get_message 159974 avg 5us 842ms set_queue_mask 200175 avg 3us 782ms release_mutex 5092 avg 12us 65ms event_op 4570 avg 13us 63ms get_handle_fd 11452 avg 4us 51ms ioctl 2874 avg 9us 27ms set_async_direct_result 1916 avg 7us 13ms
+[NXINPUT] the cursor is at 0,0, the stick moved 0,0
+[NXINPUT] the cursor is at 0,12, the stick moved 0,4
+[NXINPUT] the cursor is at 0,28, the stick moved 0,8
+[NXINPUT] the cursor is at 3,81, the stick moved 0,3
+[NXINPUT] the cursor is at 4,89, the stick moved 1,8
+[NXINPUT] the cursor is at 4,91, the stick moved 0,2
+[NXINPUT] the cursor is at 5,104, the stick moved 1,3
+[PROGRESS] 55s reads=63545 read_ms=1170 read_mb=33 sd_reads=973 sd_ms=2281 sd_mb=151 cache_hits=63946 cache_mb=3 syscalls=5943295 frames=3512 heap_used_mb=715 heap_free_mb=1176 sys_top=34:1226539,13d0:151524,ff:125866 native_entries=15535306 block_tests=5 invalidations=1594 marked_lookups=10 callret_clean=0 callret_dirty=0 translator_locks=7984 inline_unix=9594358 code_mb=8/16 code_all_mb=8 purged=0/0/0MB/0ms gl_frames=3499 swap_ms=3867 gl_calls=9574078 gl_ms=16667 copy_mb=0 persistent_fail=0 pinned=2 gl_top=999:1010/6120,863:489/89613,12:477/620,491:415/6119
+[MEMPOOL] arena_mb=80 pooled_allocs=324 block_allocs=28 shared_allocs=0 backing_slots=218 mapping_slots=1077 section_views=0 anchors=0 anchor_mb=0 section_failures=0
+[THREADS] 23 threads use 1.57 cores: 4w@0 87.5% 24w@1 50.7% 0s@0 7.1% 44w@1 2.6% 48w@1 2.6% 20w@2 1.2% 52w@2 1.2% 20s@2 0.7% 60s@1 0.7% 12w@1 0.5% 52s@2 0.5%
+[SERVER] 312970 requests, 50992 ms: select 12188 avg 4064us 49537ms set_queue_mask 154249 avg 3us 603ms get_message 110789 avg 5us 584ms get_handle_fd 18656 avg 4us 82ms event_op 5417 avg 11us 63ms release_mutex 4146 avg 13us 56ms ioctl 2865 avg 9us 27ms set_async_direct_result 1910 avg 7us 15ms
+[BALANCE] busiest core 74.9% -> 67.0%: 8w 0->2 4.2% 44w 1->2 6.5% 48w 1->2 2.8% 56w 0->1 3.7% 60w 1->2 4.8%
+[PROGRESS] 65s reads=69006 read_ms=1256 read_mb=36 sd_reads=1000 sd_ms=2331 sd_mb=154 cache_hits=69391 cache_mb=1 syscalls=7840922 frames=3821 heap_used_mb=712 heap_free_mb=1179 sys_top=34:1316325,4:131580,20:128331 native_entries=18660686 block_tests=5 invalidations=1603 marked_lookups=10 callret_clean=0 callret_dirty=0 translator_locks=8078 inline_unix=10822249 code_mb=8/16 code_all_mb=8 purged=0/0/0MB/0ms gl_frames=3808 swap_ms=4036 gl_calls=10798016 gl_ms=19270 copy_mb=0 persistent_fail=0 pinned=2 gl_top=999:1371/8298,491:541/8299,12:255/309,863:222/48491
+[MEMPOOL] arena_mb=80 pooled_allocs=331 block_allocs=28 shared_allocs=0 backing_slots=219 mapping_slots=1078 section_views=0 anchors=0 anchor_mb=0 section_failures=0
+[THREADS] 23 threads use 1.52 cores: 4w@0 78.1

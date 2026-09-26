@@ -1,0 +1,29 @@
+# Need for Speed: Hot Pursuit 2 - Autorun per-game Joy-Con -> keyboard map.
+# Values are Windows virtual-key codes. A and B are fixed by Autorun as the
+# left and right mouse buttons and cannot be remapped here.
+#
+# Game keyboard defaults (Controllers/defaults.ini, "keyboard"):
+#   arrows = steer / gas / brake, Space = handbrake, C = camera,
+#   B = look behind, H = horn/siren, R = reset car, U = call backup,
+#   Enter = accept, Esc = back/pause.
+
+# Sticks and d-pad: left stick + d-pad send the arrow keys (steering, menus);
+# right stick and touch stay a mouse cursor so A can click menu items.
+LSTICK=keys
+DPAD=keys
+RSTICK=mouse
+TOUCH=mouse
+
+# Menus
+MINUS=0x0D
+PLUS=0x1B
+
+# Driving
+ZR=0x26
+ZL=0x28
+X=0x20
+Y=0x43
+L=0x42
+R=0x48
+STICKL=0x52
+STICKR=0x55
