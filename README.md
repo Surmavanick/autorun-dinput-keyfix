@@ -2,7 +2,7 @@
 
 A tiny ASI plugin that makes **DirectInput keyboard input work under [Autorun](https://github.com/autorunhq/autorun)** (Wine on the Nintendo Switch) for games that read gameplay keys through DirectInput.
 
-Autorun turns the Joy-Con into keyboard and mouse events ("Autorun's controls", `NAME.keys.txt`). Those events reach `WM_KEYDOWN`, `GetAsyncKeyState` and `GetKeyboardState`, but on the current runtime (test build 4, `nx-wow64-dynarec-248`, `wine-11.0-nx`) they never reach a DirectInput keyboard device. Games that drive their menus with window messages and their gameplay with DirectInput scan codes therefore work in the menus and are dead in-game. Need for Speed: Hot Pursuit 2 (2002, DirectInput 7) is the reproduction case; the runtime issue is tracked in autorunhq/autorun (link below).
+Autorun turns the Joy-Con into keyboard and mouse events ("Autorun's controls", `NAME.keys.txt`). Those events reach `WM_KEYDOWN`, `GetAsyncKeyState` and `GetKeyboardState`, but on the current runtime (test build 4, `nx-wow64-dynarec-248`, `wine-11.0-nx`) they never reach a DirectInput keyboard device. Games that drive their menus with window messages and their gameplay with DirectInput scan codes therefore work in the menus and are dead in-game. Need for Speed: Hot Pursuit 2 (2002, DirectInput 7) is the reproduction case; the runtime issue is tracked in [autorunhq/autorun#39](https://github.com/autorunhq/autorun/issues/39).
 
 The plugin, loaded by [ThirteenAG's Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader), bridges the gap:
 
