@@ -26,6 +26,8 @@
  *   Middle=0        ; VK code for the middle button
  *   Poll=4          ; polling interval in ms
  *   SwapButtons=0   ; 1 = swap left and right mouse buttons in this game
+ *   TouchJumpPx=48  ; a left click right after a cursor jump this big is a touch tap
+ *   TouchWindowMs=250 ; ...within this many ms, and is NOT swapped (touch keeps selecting)
  *
  * "Left"/"Right" mean what the GAME sees, also when SwapButtons=1.
  * Log: KeyMouse.log next to the DLL.
@@ -35,9 +37,11 @@
  */
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include <stdlib.h>
 
 static HMODULE g_self; static HANDLE g_log = INVALID_HANDLE_VALUE; static HANDLE g_thread; static volatile int g_stop;
-static int g_vk[3], g_poll = 4, g_swap;
+static int g_vk[3], g_poll = 4, g_swap, g_touch_px = 48, g_touch_ms = 250;
+static POINT g_last_pos; static int g_have_pos; static DWORD g_jump_tick; static int g_touch_left; static DWORD g_touch_clicks;
 static const DWORD down_flag[3] = { MOUSEEVENTF_LEFTDOWN, MOUSEEVENTF_RIGHTDOWN, MOUSEEVENTF_MIDDLEDOWN };
 static const DWORD up_flag[3]   = { MOUSEEVENTF_LEFTUP,   MOUSEEVENTF_RIGHTUP,   MOUSEEVENTF_MIDDLEUP };
 
@@ -98,20 +102,32 @@ static WPARAM swap_mk(WPARAM wp)
 
 static LRESULT CALLBACK swap_wndproc(HWND h, UINT msg, WPARAM wp, LPARAM lp)
 {
-    WNDPROC orig = NULL; int i; UINT m = msg;
+    WNDPROC orig = NULL; int i; UINT m = msg; int keep = 0;
     for (i = 0; i < g_nsubs; i++) if (g_subs[i].hwnd == h) { orig = g_subs[i].orig; break; }
     if (!orig) return DefWindowProcA(h, msg, wp, lp);
+    if (msg == WM_MOUSEMOVE)
+    {
+        POINT p; p.x = (short)LOWORD(lp); p.y = (short)HIWORD(lp);
+        /* a touch tap moves the cursor in one big jump; the sticks move it in small steps */
+        if (g_have_pos && (abs(p.x - g_last_pos.x) > g_touch_px || abs(p.y - g_last_pos.y) > g_touch_px)) g_jump_tick = GetTickCount();
+        g_last_pos = p; g_have_pos = 1;
+    }
     switch (msg)
     {
-    case WM_LBUTTONDOWN:   m = WM_RBUTTONDOWN;   break;
-    case WM_LBUTTONUP:     m = WM_RBUTTONUP;     break;
-    case WM_LBUTTONDBLCLK: m = WM_RBUTTONDBLCLK; break;
+    case WM_LBUTTONDOWN:
+    case WM_LBUTTONDBLCLK:
+        if (g_jump_tick && GetTickCount() - g_jump_tick <= (DWORD)g_touch_ms) { g_touch_left = 1; keep = 1; g_touch_clicks++; }
+        else { g_touch_left = 0; m = (msg == WM_LBUTTONDOWN) ? WM_RBUTTONDOWN : WM_RBUTTONDBLCLK; }
+        break;
+    case WM_LBUTTONUP:
+        if (g_touch_left) { keep = 1; g_touch_left = 0; } else m = WM_RBUTTONUP;
+        break;
     case WM_RBUTTONDOWN:   m = WM_LBUTTONDOWN;   break;
     case WM_RBUTTONUP:     m = WM_LBUTTONUP;     break;
     case WM_RBUTTONDBLCLK: m = WM_LBUTTONDBLCLK; break;
     }
     if (m != msg) g_swapped_msgs++;
-    if (msg >= WM_MOUSEFIRST && msg <= WM_MOUSELAST) wp = swap_mk(wp);
+    if (msg >= WM_MOUSEFIRST && msg <= WM_MOUSELAST && !keep && !g_touch_left) wp = swap_mk(wp);
     if (msg == WM_NCDESTROY)
     {
         LRESULT r = CallWindowProcA(orig, h, msg, wp, lp);
@@ -187,7 +203,7 @@ static DWORD WINAPI poll_thread(LPVOID arg)
             if (now != held[i]) { held[i] = now; send_button(i, now); if (now) presses++; }
         }
         if (g_swap && (tick++ % (500 / g_poll + 1)) == 0) EnumWindows(subclass_enum, 0);
-        if (GetTickCount() - last_log > 10000) { logf("%lu key-button presses, %lu swapped clicks, %d windows subclassed", (unsigned long)presses, (unsigned long)g_swapped_msgs, g_nsubs); last_log = GetTickCount(); }
+        if (GetTickCount() - last_log > 10000) { logf("%lu key-button presses, %lu swapped clicks, %lu touch taps kept, %d windows subclassed", (unsigned long)presses, (unsigned long)g_swapped_msgs, (unsigned long)g_touch_clicks, g_nsubs); last_log = GetTickCount(); }
         Sleep(g_poll);
     }
     for (i = 0; i < 3; i++) if (held[i]) send_button(i, 0);
@@ -231,6 +247,8 @@ BOOL WINAPI DllMain(HINSTANCE inst, DWORD reason, LPVOID reserved)
         g_vk[2] = GetPrivateProfileIntA("KeyMouse", "Middle", 0, path);
         g_poll = GetPrivateProfileIntA("KeyMouse", "Poll", 4, path);
         g_swap = GetPrivateProfileIntA("KeyMouse", "SwapButtons", 0, path);
+        g_touch_px = GetPrivateProfileIntA("KeyMouse", "TouchJumpPx", 48, path);
+        g_touch_ms = GetPrivateProfileIntA("KeyMouse", "TouchWindowMs", 250, path);
         if (g_poll < 1) g_poll = 1;
         logf("KeyMouse loaded in pid %lu; ini=%s swap=%d", (unsigned long)GetCurrentProcessId(), path, g_swap);
 #ifdef EBUEULA_EXPORT
