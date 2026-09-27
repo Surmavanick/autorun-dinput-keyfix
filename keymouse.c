@@ -17,7 +17,10 @@
  *
  * Load it any way you like: as an ASI through the Ultimate ASI Loader, through
  * a launcher that loads modules (VEG MOD's config.xml <module lib="KeyMouse.dll"/>),
- * or as EBUEulaX.dll for Age of Empires II 1.0c / UserPatch (see below).
+ * as EBUEulaX.dll for Age of Empires II 1.0c / UserPatch, or as a dsound.dll
+ * proxy next to any game that imports DirectSoundCreate (see below). On wine-nx
+ * the last two are the safe ones: they start the worker thread from a call the
+ * game makes AFTER the module is fully loaded, never from DllMain.
  *
  * Configuration: KeyMouse.ini next to the DLL
  *   [KeyMouse]
@@ -34,6 +37,7 @@
  *
  * Build: zig cc -target x86-windows-gnu -shared -O2 -o KeyMouse.dll keymouse.c -luser32 -lkernel32
  *        zig cc -target x86-windows-gnu -shared -O2 -DEBUEULA_EXPORT -o EBUEulaX.dll keymouse.c -luser32 -lkernel32   (AoE2 1.0c/UserPatch)
+ *        zig cc -target x86-windows-gnu -shared -O2 -DDSOUND_PROXY -o dsound.dll keymouse.c dsound.def -luser32 -lkernel32   (dsound.dll proxy)
  */
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -126,7 +130,7 @@ static LRESULT CALLBACK swap_wndproc(HWND h, UINT msg, WPARAM wp, LPARAM lp)
     case WM_RBUTTONUP:     m = WM_LBUTTONUP;     break;
     case WM_RBUTTONDBLCLK: m = WM_LBUTTONDBLCLK; break;
     }
-    if (m != msg) g_swapped_msgs++;
+    if (m != msg) { g_swapped_msgs++; if (g_swapped_msgs <= 12) logf("swapped msg %04x -> %04x wp=%08lx lp=%08lx time=%lu", msg, m, (unsigned long)wp, (unsigned long)lp, (unsigned long)GetMessageTime()); }
     if (msg >= WM_MOUSEFIRST && msg <= WM_MOUSELAST && !keep && !g_touch_left) wp = swap_mk(wp);
     if (msg == WM_NCDESTROY)
     {
@@ -189,9 +193,16 @@ static void install_swap_hooks(void)
 }
 
 /* ---- polling thread ---- */
+static void start_poll_thread(void);
+
 static DWORD WINAPI poll_thread(LPVOID arg)
 {
-    int held[3] = { 0, 0, 0 }, i, tick = 0; DWORD presses = 0, last_log = GetTickCount();
+    int held[3] = { 0, 0, 0 }, i, tick = 0; DWORD presses = 0, last_log;
+    /* Autorun's loader (wine-nx) may still remap this module's pages right after DllMain; a thread
+       that calls imports through the IAT during that window dies with a page fault. Wait it out
+       without touching a single import. */
+    { volatile unsigned long spin; for (spin = 0; spin < 60000000UL; spin++) ; }
+    last_log = GetTickCount();
     logf("poll thread started (left=%02x right=%02x middle=%02x, %d ms, swap=%d)", g_vk[0], g_vk[1], g_vk[2], g_poll, g_swap);
     while (!g_stop)
     {
@@ -222,8 +233,78 @@ static DWORD WINAPI poll_thread(LPVOID arg)
 __declspec(dllexport) int __cdecl EBUEula(const char *key, ...)
 {
     logf("EBUEula(\"%s\") called - reporting the license as accepted", key ? key : "(null)");
+    start_poll_thread(); /* the module is fully loaded by now: safe to start the worker */
     return 1;
 }
+#endif
+
+static void start_poll_thread(void)
+{
+    if (g_thread) return;
+    g_thread = CreateThread(NULL, 0, poll_thread, NULL, 0, NULL);
+    logf("worker thread %s", g_thread ? "created" : "FAILED");
+}
+
+#ifdef DSOUND_PROXY
+/*
+ * Built as dsound.dll: sits next to a game that imports DirectSoundCreate (with
+ * "dsound"="native,builtin" in the prefix's DllOverrides), forwards every export
+ * to the system dsound.dll and starts the worker on the game's first
+ * DirectSoundCreate call. No ASI loader needed, no thread from DllMain.
+ */
+static HMODULE g_real_dsound;
+static FARPROC real_dsound(const char *name)
+{
+    if (!g_real_dsound)
+    {
+        char path[MAX_PATH]; UINT n = GetSystemDirectoryA(path, MAX_PATH);
+        lstrcpyA(path + n, "\\dsound.dll");
+        g_real_dsound = LoadLibraryA(path);
+        logf("system dsound.dll %s (%s)", g_real_dsound ? "loaded" : "FAILED", path);
+    }
+    return g_real_dsound ? GetProcAddress(g_real_dsound, name) : NULL;
+}
+#define DSERR_NODRIVER_ 0x88780078
+typedef HRESULT (WINAPI *PFN_DSCreate)(const GUID *, void **, void *);
+typedef HRESULT (WINAPI *PFN_DSEnum)(void *, void *);
+typedef HRESULT (WINAPI *PFN_DSFullDuplex)(const GUID *, const GUID *, const void *, const void *, HWND, DWORD, void **, void **, void **, void *);
+typedef HRESULT (WINAPI *PFN_DSDeviceID)(const GUID *, GUID *);
+typedef HRESULT (WINAPI *PFN_DSClassObject)(const void *, const void *, void **);
+typedef HRESULT (WINAPI *PFN_DSVoid)(void);
+
+__declspec(dllexport) HRESULT WINAPI DirectSoundCreate(const GUID *dev, void **out, void *outer)
+{
+    PFN_DSCreate fn = (PFN_DSCreate)real_dsound("DirectSoundCreate");
+    start_poll_thread(); /* the game is running normally by now: safe to start the worker */
+    logf("DirectSoundCreate forwarded (%s)", fn ? "ok" : "no export");
+    return fn ? fn(dev, out, outer) : (HRESULT)DSERR_NODRIVER_;
+}
+__declspec(dllexport) HRESULT WINAPI DirectSoundCreate8(const GUID *dev, void **out, void *outer)
+{
+    PFN_DSCreate fn = (PFN_DSCreate)real_dsound("DirectSoundCreate8");
+    start_poll_thread();
+    return fn ? fn(dev, out, outer) : (HRESULT)DSERR_NODRIVER_;
+}
+__declspec(dllexport) HRESULT WINAPI DirectSoundCaptureCreate(const GUID *dev, void **out, void *outer)
+{ PFN_DSCreate fn = (PFN_DSCreate)real_dsound("DirectSoundCaptureCreate"); return fn ? fn(dev, out, outer) : (HRESULT)DSERR_NODRIVER_; }
+__declspec(dllexport) HRESULT WINAPI DirectSoundCaptureCreate8(const GUID *dev, void **out, void *outer)
+{ PFN_DSCreate fn = (PFN_DSCreate)real_dsound("DirectSoundCaptureCreate8"); return fn ? fn(dev, out, outer) : (HRESULT)DSERR_NODRIVER_; }
+__declspec(dllexport) HRESULT WINAPI DirectSoundEnumerateA(void *cb, void *ctx)
+{ PFN_DSEnum fn = (PFN_DSEnum)real_dsound("DirectSoundEnumerateA"); return fn ? fn(cb, ctx) : (HRESULT)DSERR_NODRIVER_; }
+__declspec(dllexport) HRESULT WINAPI DirectSoundEnumerateW(void *cb, void *ctx)
+{ PFN_DSEnum fn = (PFN_DSEnum)real_dsound("DirectSoundEnumerateW"); return fn ? fn(cb, ctx) : (HRESULT)DSERR_NODRIVER_; }
+__declspec(dllexport) HRESULT WINAPI DirectSoundCaptureEnumerateA(void *cb, void *ctx)
+{ PFN_DSEnum fn = (PFN_DSEnum)real_dsound("DirectSoundCaptureEnumerateA"); return fn ? fn(cb, ctx) : (HRESULT)DSERR_NODRIVER_; }
+__declspec(dllexport) HRESULT WINAPI DirectSoundCaptureEnumerateW(void *cb, void *ctx)
+{ PFN_DSEnum fn = (PFN_DSEnum)real_dsound("DirectSoundCaptureEnumerateW"); return fn ? fn(cb, ctx) : (HRESULT)DSERR_NODRIVER_; }
+__declspec(dllexport) HRESULT WINAPI DirectSoundFullDuplexCreate(const GUID *cap, const GUID *rend, const void *cdesc, const void *bdesc, HWND hwnd, DWORD level, void **fd, void **cbuf, void **buf, void *outer)
+{ PFN_DSFullDuplex fn = (PFN_DSFullDuplex)real_dsound("DirectSoundFullDuplexCreate"); return fn ? fn(cap, rend, cdesc, bdesc, hwnd, level, fd, cbuf, buf, outer) : (HRESULT)DSERR_NODRIVER_; }
+__declspec(dllexport) HRESULT WINAPI GetDeviceID(const GUID *src, GUID *dst)
+{ PFN_DSDeviceID fn = (PFN_DSDeviceID)real_dsound("GetDeviceID"); return fn ? fn(src, dst) : (HRESULT)DSERR_NODRIVER_; }
+__declspec(dllexport) HRESULT WINAPI DllGetClassObject(const void *clsid, const void *iid, void **out)
+{ PFN_DSClassObject fn = (PFN_DSClassObject)real_dsound("DllGetClassObject"); return fn ? fn(clsid, iid, out) : (HRESULT)0x80040111; /* CLASS_E_CLASSNOTAVAILABLE */ }
+__declspec(dllexport) HRESULT WINAPI DllCanUnloadNow(void)
+{ PFN_DSVoid fn = (PFN_DSVoid)real_dsound("DllCanUnloadNow"); return fn ? fn() : S_FALSE; }
 #endif
 
 static void plugin_path(char *out, const char *name)
@@ -251,12 +332,13 @@ BOOL WINAPI DllMain(HINSTANCE inst, DWORD reason, LPVOID reserved)
         g_touch_ms = GetPrivateProfileIntA("KeyMouse", "TouchWindowMs", 250, path);
         if (g_poll < 1) g_poll = 1;
         logf("KeyMouse loaded in pid %lu; ini=%s swap=%d", (unsigned long)GetCurrentProcessId(), path, g_swap);
-#ifdef EBUEULA_EXPORT
+#if defined(EBUEULA_EXPORT) || defined(DSOUND_PROXY)
         { HMODULE pin = NULL; GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_PIN, (LPCSTR)DllMain, &pin); logf("pinned in memory: %s", pin ? "yes" : "no"); }
 #endif
         if (g_swap) install_swap_hooks();
-        g_thread = CreateThread(NULL, 0, poll_thread, NULL, 0, NULL);
-        if (!g_thread) logf("CreateThread failed %lu", (unsigned long)GetLastError());
+#if !defined(EBUEULA_EXPORT) && !defined(DSOUND_PROXY)
+        start_poll_thread(); /* plain KeyMouse.dll / .asi: the loader's caller has no later hook to use */
+#endif
     }
     else if (reason == DLL_PROCESS_DETACH)
     {

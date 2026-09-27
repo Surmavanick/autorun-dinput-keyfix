@@ -1,5 +1,6 @@
 d6724f047e3e7e5da1431980f2216682  NFSHP2KeyFix.asi
 659a43233fee3de7057e99cbe1c1632c  D3D8Fps.asi
 5c9950018139a3f89ce712e96fba9fd9  dinput8.dll
-0b662c631516a2558bf9e46f738283ae  KeyMouse.dll
-5ee65b1f355ab508d236d319b428fb8e  EBUEulaX.dll
+a62add73b4bc9ef415e450e9e2d8b7b3  KeyMouse.dll
+322bd69adb7a512bd511d7cc8abfba5f  EBUEulaX.dll
+61b78f199a9f1b0fd3f40ec3bfee235f  dsound.dll
